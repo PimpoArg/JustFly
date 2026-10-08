@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Just Fly Bautismos</title>
+    <title>Just Fly Bautismos | Experiencias de Vuelo</title>
     <style>
-        /* ESTILOS GENERALES Y PALETA DE COLORES */
+        /* ================= PALETA Y VARIABLES ================= */
         :root {
             --primary-dark: #2b2b2b;
             --accent-orange: #f96b0c;
-            --bg-light: #f0f2f5;
+            --bg-light: #f8f9fa;
+            --bg-gray: #e9ecef;
             --text-gray: #495057;
             --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -20,165 +27,296 @@
             padding: 0;
             background-color: var(--bg-light);
             color: var(--primary-dark);
+            line-height: 1.6;
         }
 
-        /* BARRA DE NAVEGACIÓN */
+        /* ================= NAVEGACIÓN ================= */
         nav {
-            background-color: var(--primary-dark);
+            background-color: rgba(43, 43, 43, 0.95);
+            backdrop-filter: blur(10px);
             color: var(--white);
-            padding: 20px 40px;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 2px solid var(--accent-orange);
         }
         .logo {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 22px;
+            font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-        .logo span {
-            color: var(--accent-orange);
+        .logo span { color: var(--accent-orange); }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
         }
         .nav-links a {
             color: var(--white);
             text-decoration: none;
-            margin-left: 20px;
             font-size: 14px;
             text-transform: uppercase;
-            font-weight: bold;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: var(--transition);
         }
-        .nav-links a:hover {
-            color: var(--accent-orange);
+        .nav-links a:hover { color: var(--accent-orange); }
+        .nav-btn {
+            background-color: var(--accent-orange);
+            padding: 8px 18px;
+            border-radius: 20px;
+            color: var(--white) !important;
+        }
+        .nav-btn:hover {
+            background-color: #d85a08;
+            color: var(--white);
         }
 
-        /* SECCIÓN HERO (INICIO) */
+        /* ================= HERO SECTION (INICIO CON FOTO) ================= */
         .hero {
-            background-color: var(--primary-dark);
-            color: var(--white);
-            padding: 100px 20px;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            border-bottom: 8px solid var(--accent-orange);
+            color: var(--white);
+            padding: 0 20px;
+            margin-top: 0;
         }
         .hero h1 {
-            font-size: 48px;
+            font-size: clamp(36px, 5vw, 60px);
             margin: 0 0 20px 0;
             text-transform: uppercase;
+            letter-spacing: 2px;
         }
         .hero p {
-            font-size: 18px;
-            color: #adb5bd;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            line-height: 1.6;
+            font-size: clamp(16px, 2vw, 20px);
+            max-width: 700px;
+            margin-bottom: 40px;
+            color: #f8f9fa;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-primary, .btn-secondary {
+            padding: 15px 35px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 1px;
         }
         .btn-primary {
             background-color: var(--accent-orange);
             color: var(--white);
-            padding: 15px 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
         }
-        .btn-primary:hover {
-            background-color: #d85a08;
+        .btn-primary:hover { background-color: #d85a08; transform: translateY(-3px); }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
         }
+        .btn-secondary:hover { background-color: var(--white); color: var(--primary-dark); transform: translateY(-3px); }
 
-        /* SECCIÓN SERVICIOS */
-        .services-section {
-            padding: 80px 20px;
+        /* ================= SECCIONES COMUNES ================= */
+        .section {
+            padding: 100px 5%;
             max-width: 1200px;
             margin: 0 auto;
         }
-        .section-title {
+        .bg-gray { background-color: var(--bg-gray); max-width: 100%; }
+        .section-header {
             text-align: center;
-            font-size: 32px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
+        }
+        .section-title {
+            font-size: 36px;
             text-transform: uppercase;
             color: var(--primary-dark);
+            margin-bottom: 15px;
         }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .service-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--accent-orange);
-        }
-        .service-card h3 {
-            margin-top: 0;
-            font-size: 20px;
+        .section-subtitle {
+            color: var(--accent-orange);
+            font-weight: bold;
             text-transform: uppercase;
-        }
-        .service-card p {
-            color: var(--text-gray);
-            line-height: 1.6;
-            font-size: 15px;
+            letter-spacing: 2px;
         }
 
-        /* SECCIÓN BUSCAR RESERVA */
-        .search-reservation {
-            background-color: var(--white);
-            padding: 80px 20px;
-            text-align: center;
-        }
+        /* ================= BÚSQUEDA DE RESERVA ================= */
         .search-container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: var(--bg-light);
+            max-width: 600px;
+            margin: -80px auto 40px auto; /* Sube sobre el hero */
+            background: var(--white);
             padding: 40px;
-            border-radius: 8px;
-            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            border-top: 5px solid var(--accent-orange);
         }
+        .search-container h3 { margin-top: 0; font-size: 24px; }
         .search-container input {
             width: 100%;
             padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
+            margin-bottom: 15px;
+            border: 2px solid #ced4da;
+            border-radius: 6px;
             font-size: 16px;
             box-sizing: border-box;
             text-transform: uppercase;
+            text-align: center;
+            transition: var(--transition);
         }
         .search-container input:focus {
             outline: none;
             border-color: var(--accent-orange);
         }
+        .error-msg {
+            display: none;
+            color: #dc3545;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
 
-        /* FOOTER */
-        footer {
+        /* ================= INFORMACIÓN (ABOUT) ================= */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .info-text p {
+            color: var(--text-gray);
+            font-size: 17px;
+            margin-bottom: 20px;
+        }
+        .info-image {
+            width: 100%;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1583024658195-257a3e790a3c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } }
+
+        /* ================= SERVICIOS CON FOTOS ================= */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .service-card:hover { transform: translateY(-10px); }
+        .service-img {
+            height: 200px;
+            background-color: #ccc;
+            background-size: cover;
+            background-position: center;
+        }
+        .service-img.basico { background-image: url('https://images.unsplash.com/photo-1520697554902-124bdfb77626?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
+        .service-img.panoramico { background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
+        .service-img.doble { background-image: url('https://images.unsplash.com/photo-1623886518774-fc2c3587b1c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
+        
+        .service-content { padding: 30px; }
+        .service-content h3 { margin-top: 0; font-size: 22px; color: var(--primary-dark); }
+        .service-content p { color: var(--text-gray); font-size: 15px; margin-bottom: 20px; }
+        .service-price { font-weight: bold; color: var(--accent-orange); font-size: 18px; margin-bottom: 15px; display: block; }
+
+        /* ================= TESTIMONIOS ================= */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border-bottom: 4px solid var(--accent-orange);
+        }
+        .stars { color: #ffc107; font-size: 20px; margin-bottom: 15px; }
+        .testimonial-text { font-style: italic; color: var(--text-gray); margin-bottom: 20px; }
+        .testimonial-author { font-weight: bold; color: var(--primary-dark); text-transform: uppercase; font-size: 14px; }
+
+        /* ================= CONTACTO Y FOOTER ================= */
+        .cta-section {
             background-color: var(--primary-dark);
             color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .cta-section h2 { font-size: 36px; margin-bottom: 20px; }
+        .cta-section p { font-size: 18px; margin-bottom: 40px; color: #adb5bd; max-width: 600px; margin-inline: auto; }
+        
+        footer {
+            background-color: #1a1a1a;
+            color: #adb5bd;
             text-align: center;
             padding: 30px;
             font-size: 14px;
         }
 
-        /* --------------------------------------------------- */
-        /* ESTILOS DEL TICKET (Oculto por defecto en la página) */
-        /* --------------------------------------------------- */
+        /* BOTÓN FLOTANTE WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-float svg { width: 35px; height: 35px; fill: white; }
+
+        /* ================= VISTA DEL TICKET ================= */
         #ticket-view {
-            display: none; /* Se oculta hasta que se busca una reserva */
+            display: none;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 100px 20px 40px 20px;
             flex-direction: column;
+            background-color: var(--bg-gray);
         }
-        
         .back-btn {
             margin-bottom: 20px;
             background: none;
@@ -190,186 +328,165 @@
             text-decoration: underline;
         }
 
-        .ticket {
-            background-color: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            max-width: 900px;
-            width: 100%;
-            border-top: 8px solid var(--accent-orange);
-        }
-        @media (min-width: 768px) {
-            .ticket { flex-direction: row; }
-        }
-        .main-content {
-            padding: 30px;
-            flex: 2;
-            border-right: 2px dashed #e0e0e0;
-        }
-        .stub {
-            padding: 30px;
-            flex: 1;
-            background-color: #f8f9fa;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .header-ticket {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--primary-dark);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-        .flight-class {
-            background-color: #28a745;
-            color: var(--white);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .detail-item {
-            display: flex;
-            flex-direction: column;
-        }
-        .label {
-            font-size: 11px;
-            color: #6c757d;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-        .value {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
-        .info-section {
-            background-color: #f8f9fa;
-            border-left: 4px solid var(--accent-orange);
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        .info-title {
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-        .info-list {
-            margin: 0;
-            padding-left: 15px;
-            font-size: 12px;
-            line-height: 1.5;
-            color: var(--text-gray);
-        }
-        .wp-button {
-            display: inline-block;
-            background-color: #25D366;
-            color: var(--white);
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 14px;
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-            text-transform: uppercase;
-        }
-        .stub-title {
-            font-weight: bold;
-            font-size: 18px;
-            border-bottom: 2px solid var(--accent-orange);
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .stub-content {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .barcode {
-            width: 100%;
-            height: 60px;
-            background: repeating-linear-gradient(90deg, #2b2b2b, #2b2b2b 3px, transparent 3px, transparent 6px, #2b2b2b 6px, #2b2b2b 8px, transparent 8px, transparent 12px, #2b2b2b 12px, #2b2b2b 16px, transparent 16px, transparent 20px);
-            margin-top: 20px;
-        }
+        /* Estilos del Ticket de la versión anterior (minificados para espacio) */
+        .ticket { background-color: var(--white); border-radius: 12px; box-shadow: var(--shadow); display: flex; flex-direction: column; overflow: hidden; max-width: 900px; width: 100%; border-top: 8px solid var(--accent-orange); }
+        @media (min-width: 768px) { .ticket { flex-direction: row; } }
+        .main-content { padding: 30px; flex: 2; border-right: 2px dashed #e0e0e0; }
+        .stub { padding: 30px; flex: 1; background-color: #f8f9fa; display: flex; flex-direction: column; justify-content: space-between; }
+        .header-ticket { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary-dark); padding-bottom: 15px; margin-bottom: 20px; }
+        .flight-class { background-color: #28a745; color: var(--white); padding: 5px 15px; border-radius: 20px; font-size: 14px; font-weight: bold; }
+        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .detail-item { display: flex; flex-direction: column; }
+        .label { font-size: 11px; color: #6c757d; text-transform: uppercase; font-weight: bold; margin-bottom: 4px; }
+        .value { font-size: 16px; font-weight: 600; color: var(--primary-dark); }
+        .info-section { background-color: #f8f9fa; border-left: 4px solid var(--accent-orange); padding: 15px; margin-bottom: 20px; }
+        .info-title { font-size: 14px; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
+        .info-list { margin: 0; padding-left: 15px; font-size: 12px; line-height: 1.5; color: var(--text-gray); }
+        .wp-button { display: inline-block; background-color: #25D366; color: var(--white); text-decoration: none; padding: 12px 20px; border-radius: 30px; font-weight: bold; font-size: 14px; text-align: center; width: 100%; box-sizing: border-box; text-transform: uppercase; }
+        .stub-title { font-weight: bold; font-size: 18px; border-bottom: 2px solid var(--accent-orange); padding-bottom: 10px; margin-bottom: 10px; text-align: center; }
+        .barcode { width: 100%; height: 60px; background: repeating-linear-gradient(90deg, #2b2b2b, #2b2b2b 3px, transparent 3px, transparent 6px, #2b2b2b 6px, #2b2b2b 8px, transparent 8px, transparent 12px, #2b2b2b 12px, #2b2b2b 16px, transparent 16px, transparent 20px); margin-top: 20px; }
+
     </style>
 </head>
 <body>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://wa.me/5491128540206?text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20para%20reservar%20un%20vuelo%20de%20bautismo." class="whatsapp-float" target="_blank" title="Contactanos por WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 2a13.9 13.9 0 0 0-11.75 21.36L2.5 30l6.83-1.7a13.9 13.9 0 1 0 6.67-26.3zm0 25.54a11.66 11.66 0 0 1-6-1.65l-.43-.25-4.46 1.1 1.2-4.24-.28-.44A11.72 11.72 0 1 1 16 27.54zm6.5-8.6c-.35-.18-2.1-.1-2.42-.03-.33.06-.57.17-.8.5s-.9 1.12-1.12 1.34-.43.25-.78.07a9.35 9.35 0 0 1-2.75-1.7 10.3 10.3 0 0 1-1.9-2.37c-.22-.38.02-.57.2-.75.16-.16.35-.42.53-.63.18-.2.24-.35.35-.58.12-.23.06-.44-.03-.63-.09-.18-.8-1.93-1.1-2.65-.28-.7-.57-.6-.8-.6h-.68c-.28 0-.74.1-1.13.53a3.42 3.42 0 0 0-1.07 2.53c0 1.5 1.1 2.95 1.26 3.16.15.22 2.15 3.28 5.2 4.54 2.1.86 2.87 1.05 3.93.97 1.1-.07 2.1-.85 2.4-1.68.3-.83.3-1.53.2-1.68-.08-.13-.3-.23-.65-.4z"/></svg>
+    </a>
 
     <!-- VISTA PRINCIPAL (LANDING PAGE) -->
     <div id="landing-view">
         <nav>
             <div class="logo">JUST FLY <span>BAUTISMOS</span></div>
             <div class="nav-links">
+                <a href="#info">Nosotros</a>
                 <a href="#servicios">Servicios</a>
-                <a href="#mi-reserva">Mi Reserva</a>
+                <a href="#opiniones">Opiniones</a>
+                <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20reservar%20un%20vuelo!" target="_blank" class="nav-btn">Reservar</a>
             </div>
         </nav>
 
         <header class="hero">
-            <h1>Descubra la experiencia de volar</h1>
-            <p>Vuelos de bautismo exclusivos sobre la zona norte de Buenos Aires. Conozca la aviación desde adentro con nuestros pilotos experimentados.</p>
-            <a href="#mi-reserva" class="btn-primary">Gestionar mi reserva</a>
+            <h1>El cielo ya no es el límite</h1>
+            <p>Descubra Buenos Aires desde una nueva perspectiva. Vuelos de bautismo exclusivos en el Aeropuerto Internacional de San Fernando con pilotos experimentados.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20reservar%20un%20vuelo!" target="_blank" class="btn-primary">Quiero Reservar</a>
+                <a href="#mi-reserva" class="btn-secondary">Ver mi Estado de Vuelo</a>
+            </div>
         </header>
 
-        <section id="servicios" class="services-section">
-            <h2 class="section-title">Nuestros Servicios</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Vuelo Básico (30 Min)</h3>
-                    <p>Ideal para su primera experiencia en el aire. Sobrevuelo por la zona de San Fernando, Tigre y alrededores. Incluye charla técnica previa y familiarización con la aeronave.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Vuelo Panorámico (45 Min)</h3>
-                    <p>Un recorrido más extenso que permite disfrutar de las mejores vistas del Delta y la costa del Río de la Plata. Tiempo extendido en el aire para fotografías.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Experiencia Doble</h3>
-                    <p>Pensado para parejas o amigos. Dos vuelos sucesivos en la misma jornada para que ambos puedan experimentar la sensación de volar en nuestra aeronave biplaza.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="mi-reserva" class="search-reservation">
-            <h2 class="section-title">Acceder a su Tarjeta de Embarque</h2>
+        <!-- BÚSQUEDA DE RESERVA -->
+        <section id="mi-reserva" style="position: relative;">
             <div class="search-container">
-                <p style="color: var(--text-gray); margin-bottom: 20px;">Ingrese su código de reserva (Ej: S011-012) para visualizar los detalles de su vuelo y su pase de abordar.</p>
+                <h3>Verifique su Tarjeta de Embarque</h3>
+                <p style="color: var(--text-gray); font-size: 15px; margin-bottom: 20px;">Ingrese su código de reserva (Ej: S011-012) para acceder a los detalles del vuelo y el pase de abordar.</p>
+                <div id="error-msg" class="error-msg"></div>
                 <form onsubmit="buscarReserva(event)">
-                    <input type="text" id="codigo-reserva" placeholder="Ingrese su código de reserva" required>
+                    <input type="text" id="codigo-reserva" placeholder="CÓDIGO DE RESERVA" required>
                     <button type="submit" class="btn-primary" style="width: 100%;">Buscar Vuelo</button>
                 </form>
             </div>
         </section>
 
+        <!-- SECCIÓN INFORMACIÓN -->
+        <section id="info" class="section">
+            <div class="section-header">
+                <span class="section-subtitle">Nuestra Experiencia</span>
+                <h2 class="section-title">Volar Nunca Fue Tan Seguro</h2>
+            </div>
+            <div class="info-grid">
+                <div class="info-text">
+                    <p>En <strong>Just Fly Bautismos</strong>, nuestro objetivo es acercar la pasión por la aviación a todas las personas. Operamos desde el prestigioso Aeropuerto Internacional de San Fernando, garantizando los más altos estándares operativos.</p>
+                    <p>Nuestra aeronave principal, el <strong>Tecnam P2002 (LV-S011)</strong>, es un avión biplaza de diseño italiano, reconocido mundialmente por su visibilidad panorámica, confort y seguridad excepcional, ideal para primeros vuelos.</p>
+                    <p>Cada experiencia incluye un <i>briefing</i> técnico previo, donde el piloto explicará los principios básicos del vuelo y los sistemas del avión, convirtiendo el paseo en una experiencia también educativa.</p>
+                </div>
+                <div class="info-image"></div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN SERVICIOS -->
+        <section id="servicios" class="section bg-gray">
+            <div class="section-header">
+                <span class="section-subtitle">Lo que ofrecemos</span>
+                <h2 class="section-title">Nuestros Vuelos</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img basico"></div>
+                    <div class="service-content">
+                        <h3>Bautismo Clásico</h3>
+                        <span class="service-price">30 Minutos</span>
+                        <p>El vuelo introductorio perfecto. Despegue desde San Fernando, sobrevuelo por la zona norte, Tigre y alrededores del Delta. Excelente para una primera toma de contacto con el aire.</p>
+                        <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20info%20sobre%20el%20Bautismo%20Clasico" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: none;">Reservar este vuelo →</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img panoramico"></div>
+                    <div class="service-content">
+                        <h3>Vuelo Panorámico</h3>
+                        <span class="service-price">45 Minutos</span>
+                        <p>Una ruta más extensa que nos permite adentrarnos en las vistas del Río de la Plata y recorrer el Delta en profundidad. Ideal para los amantes de la fotografía.</p>
+                        <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20info%20sobre%20el%20Vuelo%20Panoramico" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: none;">Reservar este vuelo →</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img doble"></div>
+                    <div class="service-content">
+                        <h3>Experiencia Doble</h3>
+                        <span class="service-price">Para Parejas / Amigos</span>
+                        <p>Como el avión es para un pasajero + piloto, ofrecemos dos vuelos consecutivos en la misma jornada. Mientras uno vuela, el otro disfruta de las instalaciones del aeródromo.</p>
+                        <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20info%20sobre%20la%20Experiencia%20Doble" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: none;">Reservar este vuelo →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN OPINIONES -->
+        <section id="opiniones" class="section">
+            <div class="section-header">
+                <span class="section-subtitle">Testimonios</span>
+                <h2 class="section-title">Lo que dicen nuestros pasajeros</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Fue un regalo de cumpleaños y superó todas mis expectativas. El piloto me explicó todo con mucha paciencia y la vista de Tigre desde arriba es increíble."</p>
+                    <div class="testimonial-author">- Martina S.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Excelente atención desde el momento de la reserva. Llegamos al aeropuerto, hicimos la charla previa y el vuelo en el Tecnam fue super estable y tranquilo. ¡Lo recomiendo 100%!"</p>
+                    <div class="testimonial-author">- Gastón L.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Siempre tuve miedo a volar, pero la profesionalidad del equipo me transmitió muchísima seguridad. Fue una experiencia inolvidable, sin dudas volvería a hacerlo."</p>
+                    <div class="testimonial-author">- Camila F.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA CONTACTO -->
+        <section class="cta-section">
+            <h2>¿Listo para despegar?</h2>
+            <p>Hable con nosotros por WhatsApp para consultar disponibilidad de fechas, tarifas actualizadas o para organizar un regalo sorpresa.</p>
+            <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20reservar%20un%20vuelo!" target="_blank" class="btn-primary">Contactar Ahora</a>
+        </section>
+
         <footer>
-            <p>&copy; 2026 Just Fly Bautismos. Operando desde Aeropuerto Internacional de San Fernando.</p>
+            <p>&copy; 2026 Just Fly Bautismos. Operando desde Aeropuerto Internacional de San Fernando. LV-S011.</p>
         </footer>
     </div>
 
     <!-- VISTA DEL TICKET (TARJETA DE EMBARQUE) -->
     <div id="ticket-view">
-        <button class="back-btn" onclick="volverInicio()">Volver a la página principal</button>
+        <button class="back-btn" onclick="volverInicio()">← Volver al Inicio</button>
         
         <div class="ticket">
             <div class="main-content">
                 <div class="header-ticket">
-                    <div class="logo">JUST FLY <span>BAUTISMOS</span></div>
+                    <div class="logo" style="color:#2b2b2b;">JUST FLY <span style="color:#f96b0c;">BAUTISMOS</span></div>
                     <div class="flight-class">CONFIRMADO</div>
                 </div>
                 
@@ -396,7 +513,7 @@
                     </div>
                     <div class="detail-item">
                         <span class="label">Aeronave</span>
-                        <span class="value">Tecnam P2002 / LV-S011</span>
+                        <span class="value" id="flight-aircraft">Tecnam P2002 / LV-S011</span>
                     </div>
                 </div>
 
@@ -410,7 +527,7 @@
                     </ol>
                 </div>
 
-                <a href="https://wa.me/5491128540206" class="wp-button" target="_blank" id="wp-link">
+                <a href="#" class="wp-button" target="_blank" id="wp-link">
                     Contactar Atención al Cliente
                 </a>
             </div>
@@ -436,60 +553,87 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE FUNCIONAMIENTO -->
+    <!-- SCRIPT DE FUNCIONAMIENTO Y BASE DE DATOS FALTANTE -->
     <script>
-        // Esta función se ejecuta al cargar la página
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            
-            // Si el link trae los datos de forma directa (como lo armamos en el mail)
-            if(urlParams.has('nombre')) {
-                // Ocultamos la página principal y mostramos el ticket
-                document.getElementById('landing-view').style.display = 'none';
-                document.getElementById('ticket-view').style.display = 'flex';
-                
-                // Cargamos los datos
-                const nombre = urlParams.get('nombre').replace(/-/g, ' ');
-                const reserva = urlParams.has('reserva') ? '#' + urlParams.get('reserva').toUpperCase() : '#S011-PENDING';
-                const fecha = urlParams.has('fecha') ? urlParams.get('fecha') : 'Sábado 17 Oct 2026';
-                const hora = urlParams.has('hora') ? urlParams.get('hora') : '16:30 Local (Vuelo 17:00)';
-                
-                cargarDatosTicket(nombre, reserva, fecha, hora);
+        // BASE DE DATOS SIMULADA (Acá agregás las reservas reales)
+        const baseDeDatosReservas = {
+            "#S011-012": {
+                nombre: "Joaquin Lenne",
+                fecha: "Sábado 17 Oct 2026",
+                hora: "16:30 Local (Vuelo 17:00)",
+                aeronave: "Tecnam P2002 / LV-S011"
+            },
+            // Podés ir agregando más clientes copiando este bloque de arriba
+            "#S011-013": {
+                nombre: "Martin Gomez",
+                fecha: "Domingo 18 Oct 2026",
+                hora: "09:30 Local (Vuelo 10:00)",
+                aeronave: "Tecnam P2002 / LV-S011"
             }
         };
 
-        // Función cuando el usuario busca manualmente desde la web
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Lógica para links enviados por mail (?nombre=Joaquin...)
+            if(urlParams.has('nombre')) {
+                document.getElementById('landing-view').style.display = 'none';
+                document.getElementById('ticket-view').style.display = 'flex';
+                
+                const nombre = urlParams.get('nombre').replace(/-/g, ' ');
+                const reserva = urlParams.has('reserva') ? '#' + urlParams.get('reserva').toUpperCase() : '#S011-012';
+                const fecha = urlParams.has('fecha') ? urlParams.get('fecha') : 'Sábado 17 Oct 2026';
+                const hora = urlParams.has('hora') ? urlParams.get('hora') : '16:30 Local (Vuelo 17:00)';
+                
+                cargarDatosTicket(nombre, reserva, fecha, hora, "Tecnam P2002 / LV-S011");
+            }
+        };
+
         function buscarReserva(event) {
-            event.preventDefault(); // Evita que la página recargue
+            event.preventDefault(); 
             let codigoIngresado = document.getElementById('codigo-reserva').value.trim().toUpperCase();
+            const errorDiv = document.getElementById('error-msg');
             
             if(codigoIngresado) {
                 if(!codigoIngresado.startsWith('#')) {
                     codigoIngresado = '#' + codigoIngresado;
                 }
                 
-                // Transición: Ocultar Home, Mostrar Ticket
-                document.getElementById('landing-view').style.display = 'none';
-                document.getElementById('ticket-view').style.display = 'flex';
-                window.scrollTo(0, 0); // Sube al inicio de la página
-                
-                // Para la búsqueda manual, ponemos datos genéricos y el código ingresado. 
-                // (Para hacerlo 100% real se necesitaría una base de datos, pero así simula el sistema)
-                cargarDatosTicket("Pasajero Confirmado", codigoIngresado, "A Coordinar", "A Coordinar");
+                // VERIFICAR EN BASE DE DATOS SIMULADA
+                if(baseDeDatosReservas[codigoIngresado]) {
+                    errorDiv.style.display = 'none'; // Ocultar error si había
+                    
+                    const datosVuelo = baseDeDatosReservas[codigoIngresado];
+                    
+                    document.getElementById('landing-view').style.display = 'none';
+                    document.getElementById('ticket-view').style.display = 'flex';
+                    window.scrollTo(0, 0); 
+                    
+                    cargarDatosTicket(
+                        datosVuelo.nombre, 
+                        codigoIngresado, 
+                        datosVuelo.fecha, 
+                        datosVuelo.hora,
+                        datosVuelo.aeronave
+                    );
+                } else {
+                    // SI NO EXISTE LA RESERVA, MOSTRAR ERROR
+                    errorDiv.innerText = "Esa reserva no existe. Por favor, verifique el código e intente nuevamente.";
+                    errorDiv.style.display = 'block';
+                }
             }
         }
 
-        // Función para volver atrás
         function volverInicio() {
             document.getElementById('ticket-view').style.display = 'none';
             document.getElementById('landing-view').style.display = 'block';
+            document.getElementById('error-msg').style.display = 'none';
+            document.getElementById('codigo-reserva').value = ''; // Limpiar el input
             
-            // Limpia la URL para que no quede el ?nombre=... si deciden volver atrás
             window.history.replaceState({}, document.title, window.location.pathname);
         }
 
-        // Función auxiliar para llenar los textos del ticket
-        function cargarDatosTicket(nombre, reserva, fecha, hora) {
+        function cargarDatosTicket(nombre, reserva, fecha, hora, aeronave) {
             document.getElementById('passenger-name').innerText = nombre;
             document.getElementById('stub-passenger').innerText = nombre;
             
@@ -498,8 +642,8 @@
             
             document.getElementById('flight-date').innerText = fecha;
             document.getElementById('flight-time').innerText = hora;
+            document.getElementById('flight-aircraft').innerText = aeronave;
 
-            // Actualizar link de WhatsApp con la reserva
             const linkWp = `https://wa.me/5491128540206?text=Hola,%20tengo%20una%20consulta%20sobre%20mi%20reserva%20${reserva}`;
             document.getElementById('wp-link').href = linkWp;
         }
