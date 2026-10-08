@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarjeta de Embarque - LV-S011</title>
+    <title>Tarjeta de Embarque - Just Fly Bautismos</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e9ecef;
+            background-color: #f0f2f5;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
@@ -19,97 +19,106 @@
             background-color: white;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
-            border-top: 8px solid #f96b0c; /* Naranja inspirado en la franja del avión */
+            border-top: 8px solid #f96b0c;
+        }
+        @media (min-width: 768px) {
+            .ticket {
+                flex-direction: row;
+            }
+        }
+        .main-content {
+            padding: 30px;
+            flex: 2;
+            border-right: 2px dashed #e0e0e0;
+            position: relative;
+        }
+        .stub {
+            padding: 30px;
+            flex: 1;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .header {
-            background-color: #2b2b2b; /* Gris oscuro/negro de las letras del avión */
-            color: white;
-            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 2px solid #2b2b2b;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
         }
         .airline-name {
             font-size: 24px;
             font-weight: bold;
+            color: #2b2b2b;
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
         .airline-name span {
             color: #f96b0c;
         }
-        .status {
+        .flight-class {
             background-color: #28a745;
             color: white;
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 14px;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .content {
-            padding: 30px;
-        }
-        .grid {
+        .details-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
+            margin-bottom: 20px;
         }
-        @media (min-width: 600px) {
-            .grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        .item {
+        .detail-item {
             display: flex;
             flex-direction: column;
         }
         .label {
-            font-size: 12px;
+            font-size: 11px;
             color: #6c757d;
             text-transform: uppercase;
             font-weight: bold;
-            margin-bottom: 5px;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
         }
         .value {
             font-size: 16px;
-            color: #212529;
             font-weight: 600;
-        }
-        .divider {
-            height: 1px;
-            background-color: #dee2e6;
-            margin: 25px 0;
+            color: #2b2b2b;
         }
         .info-section {
             background-color: #f8f9fa;
             border-left: 4px solid #f96b0c;
-            padding: 20px;
+            padding: 15px;
             border-radius: 0 8px 8px 0;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         .info-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             color: #2b2b2b;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
         .info-list {
             margin: 0;
-            padding-left: 20px;
+            padding-left: 15px;
             color: #495057;
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 12px;
+            line-height: 1.5;
         }
         .info-list li {
-            margin-bottom: 10px;
-        }
-        .info-list strong {
-            color: #2b2b2b;
+            margin-bottom: 6px;
         }
         .wp-button {
             display: inline-flex;
@@ -118,87 +127,133 @@
             background-color: #25D366;
             color: white;
             text-decoration: none;
-            padding: 12px 24px;
+            padding: 12px 20px;
             border-radius: 30px;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 14px;
             transition: background-color 0.3s;
             width: 100%;
             box-sizing: border-box;
-            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .wp-button:hover {
             background-color: #1ebe57;
         }
-        .wp-icon {
-            margin-right: 10px;
-            font-size: 20px;
+        .stub-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .barcode {
+            width: 100%;
+            height: 60px;
+            background: repeating-linear-gradient(
+                90deg,
+                #2b2b2b,
+                #2b2b2b 3px,
+                transparent 3px,
+                transparent 6px,
+                #2b2b2b 6px,
+                #2b2b2b 8px,
+                transparent 8px,
+                transparent 12px,
+                #2b2b2b 12px,
+                #2b2b2b 16px,
+                transparent 16px,
+                transparent 20px
+            );
+            margin-top: auto;
+        }
+        .stub-title {
+            font-weight: bold;
+            color: #2b2b2b;
+            font-size: 18px;
+            border-bottom: 2px solid #f96b0c;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-<div class="ticket">
-    <div class="header">
-        <div class="airline-name">✈️ TEC<span>FLIGHT</span></div>
-        <div class="status">CONFIRMADO ✅</div>
-    </div>
-    
-    <div class="content">
-        <div class="grid">
-            <div class="item">
-                <span class="label">Pasajero</span>
-                <span class="value" id="passenger-name">Generando ticket...</span>
+    <div class="ticket">
+        <div class="main-content">
+            <div class="header">
+                <div class="airline-name">JUST FLY <span>BAUTISMOS</span></div>
+                <div class="flight-class">CONFIRMADO</div>
             </div>
-            <div class="item">
-                <span class="label">Código de Reserva</span>
-                <span class="value">#S011-012</span>
+            
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="label">Pasajero</span>
+                    <span class="value" id="passenger-name">Joaquin Lenne</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Reserva</span>
+                    <span class="value">#S011-012</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Fecha</span>
+                    <span class="value" id="flight-date">Sabado 17 Oct 2026</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Presentacion</span>
+                    <span class="value" id="flight-time">16:30 Local (Vuelo 17:00)</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Punto de Encuentro</span>
+                    <span class="value">Aeropuerto San Fernando<br><span style="font-size: 13px; font-weight: normal;">Cafeteria Estacionamiento Principal</span></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Aeronave</span>
+                    <span class="value">Tecnam P2002 / LV-S011</span>
+                </div>
             </div>
-            <div class="item">
-                <span class="label">Fecha del Vuelo</span>
-                <span class="value">Sábado 17 de Octubre de 2026</span>
+
+            <div class="info-section">
+                <div class="info-title">Informacion Importante</div>
+                <ol class="info-list">
+                    <li><strong>Puntualidad:</strong> Presentarse con 30 min de anticipacion para el briefing previo al vuelo.</li>
+                    <li><strong>Meteorologia:</strong> Sujeto a condiciones visuales (VFR). Posible reprogramacion en caso de clima adverso.</li>
+                    <li><strong>Vestimenta:</strong> Recomendamos ropa comoda y anteojos de sol.</li>
+                    <li><strong>Documentacion:</strong> Requisito excluyente presentar DNI fisico (pasajero y acompañante).</li>
+                </ol>
             </div>
-            <div class="item">
-                <span class="label">Horario de Presentación</span>
-                <span class="value">17:00 Local (Llegar 16:30hs)</span>
-            </div>
-            <div class="item">
-                <span class="label">Aeronave Asignada</span>
-                <span class="value">Tecnam P2002 / LV-S011</span>
-            </div>
-            <div class="item">
-                <span class="label">Punto de Encuentro</span>
-                <span class="value">Aeropuerto Int. de San Fernando<br><small style="font-weight: normal; color: #495057;">Cafetería en el estacionamiento principal</small></span>
-            </div>
+
+            <a href="https://wa.me/5491128540206?text=Hola,%20tengo%20una%20consulta%20sobre%20mi%20reserva%20%23S011-012" class="wp-button" target="_blank">
+                Contactar Atencion al Cliente
+            </a>
         </div>
 
-        <div class="divider"></div>
-
-        <div class="info-section">
-            <div class="info-title">⚠️ Información Importante para su Vuelo</div>
-            <ol class="info-list">
-                <li><strong>Puntualidad:</strong> Le solicitamos llegar con 30 minutos de anticipación para realizar el briefing (charla técnica) previo al vuelo. En este espacio se van a explicar conceptos teóricos respecto al vuelo, aspectos de seguridad y un espacio para evacuar dudas.</li>
-                <li><strong>Meteorología:</strong> La actividad aeronáutica está estrictamente sujeta a condiciones climáticas visuales (VFR). En caso de que el clima no sea óptimo, se notificará la cancelación del vuelo seguido a una reprogramación del mismo.</li>
-                <li><strong>Vestimenta:</strong> Recomendamos el uso de ropa cómoda y anteojos de sol.</li>
-                <li><strong>Documentación:</strong> Es requisito excluyente presentarse con DNI físico tanto del pasajero como del acompañante.</li>
-            </ol>
+        <div class="stub">
+            <div class="stub-content">
+                <div class="stub-title">JUST FLY</div>
+                <div class="detail-item">
+                    <span class="label">Pasajero</span>
+                    <span class="value" id="stub-passenger">Joaquin Lenne</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Reserva</span>
+                    <span class="value">#S011-012</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Matricula</span>
+                    <span class="value">LV-S011</span>
+                </div>
+            </div>
+            <div class="barcode"></div>
         </div>
-
-        <!-- Se agrega el botón de WhatsApp con el número brindado (con formato internacional +54 9) -->
-        <a href="https://wa.me/5491128540206?text=Hola!%20Tengo%20una%20consulta%20sobre%20mi%20reserva%20del%20vuelo%20de%20bautismo%20%23S011-012" class="wp-button" target="_blank">
-            <span class="wp-icon">📱</span> Contactar por WhatsApp
-        </a>
     </div>
-</div>
 
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    if(urlParams.has('nombre')) {
-        // Permite usar guiones o espacios en la URL (ej: nombre=Juan-Perez o nombre=Juan%20Perez)
-        document.getElementById('passenger-name').innerText = urlParams.get('nombre').replace(/-/g, ' ');
-    } else {
-        document.getElementById('passenger-name').innerText = "Pasajero VIP";
-    }
-</script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if(urlParams.has('nombre')) {
+            const nombre = urlParams.get('nombre').replace(/-/g, ' ');
+            document.getElementById('passenger-name').innerText = nombre;
+            document.getElementById('stub-passenger').innerText = nombre;
+        }
+    </script>
 </body>
 </html>
