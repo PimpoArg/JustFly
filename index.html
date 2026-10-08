@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarjeta de Embarque - Vuelo de Bautismo</title>
+    <title>Tarjeta de Embarque - LV-S011</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
+            background-color: #e9ecef;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
             margin: 0;
@@ -18,60 +18,50 @@
         .ticket {
             background-color: white;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             overflow: hidden;
             max-width: 800px;
             width: 100%;
-        }
-        @media (min-width: 600px) {
-            .ticket {
-                flex-direction: row;
-            }
-        }
-        .main-content {
-            padding: 30px;
-            flex: 2;
-            border-right: 2px dashed #e0e0e0;
-            position: relative;
-        }
-        .stub {
-            padding: 30px;
-            flex: 1;
-            background-color: #f8f9fa;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            border-top: 8px solid #f96b0c; /* Naranja inspirado en la franja del avión */
         }
         .header {
+            background-color: #2b2b2b; /* Gris oscuro/negro de las letras del avión */
+            color: white;
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #0056b3;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
         }
         .airline-name {
             font-size: 24px;
             font-weight: bold;
-            color: #0056b3;
+            letter-spacing: 1px;
         }
-        .flight-class {
-            background-color: #0056b3;
+        .airline-name span {
+            color: #f96b0c;
+        }
+        .status {
+            background-color: #28a745;
             color: white;
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 14px;
             font-weight: bold;
         }
-        .details-grid {
+        .content {
+            padding: 30px;
+        }
+        .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 20px;
         }
-        .detail-item {
+        @media (min-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .item {
             display: flex;
             flex-direction: column;
         }
@@ -79,126 +69,136 @@
             font-size: 12px;
             color: #6c757d;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: bold;
             margin-bottom: 5px;
         }
         .value {
-            font-size: 18px;
+            font-size: 16px;
+            color: #212529;
             font-weight: 600;
-            color: #343a40;
         }
-        .barcode {
-            width: 100%;
-            height: 60px;
-            background: repeating-linear-gradient(
-                90deg,
-                #000,
-                #000 3px,
-                #fff 3px,
-                #fff 6px,
-                #000 6px,
-                #000 8px,
-                #fff 8px,
-                #fff 12px
-            );
-            margin-top: 20px;
+        .divider {
+            height: 1px;
+            background-color: #dee2e6;
+            margin: 25px 0;
         }
-        .qr-placeholder {
-            width: 120px;
-            height: 120px;
-            background-color: #e9ecef;
+        .info-section {
+            background-color: #f8f9fa;
+            border-left: 4px solid #f96b0c;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 25px;
+        }
+        .info-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2b2b2b;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 2px solid #dee2e6;
+            gap: 8px;
         }
-        .aircraft-info {
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
+        .info-list {
+            margin: 0;
+            padding-left: 20px;
+            color: #495057;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .info-list li {
+            margin-bottom: 10px;
+        }
+        .info-list strong {
+            color: #2b2b2b;
+        }
+        .wp-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+        .wp-button:hover {
+            background-color: #1ebe57;
+        }
+        .wp-icon {
+            margin-right: 10px;
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="ticket">
-        <div class="main-content">
-            <div class="header">
-                <div class="airline-name">✈️ AVIACIÓN EXPERIENCES</div>
-                <div class="flight-class">VUELO DE BAUTISMO</div>
-            </div>
-            
-            <div class="details-grid">
-                <div class="detail-item">
-                    <span class="label">Pasajero</span>
-                    <span class="value" id="passenger-name">Juan Pérez</span>
-                </div>
-                <div class="detail-item">
-                    <span class="label">Fecha</span>
-                    <span class="value" id="flight-date">15 Oct 2026</span>
-                </div>
-                <div class="detail-item">
-                    <span class="label">Embarque</span>
-                    <span class="value" id="flight-time">10:45 AM</span>
-                </div>
-                <div class="detail-item">
-                    <span class="label">Reserva</span>
-                    <span class="value">#VB-8492</span>
-                </div>
-                <div class="detail-item">
-                    <span class="label">Origen</span>
-                    <span class="value">Aeródromo Local</span>
-                </div>
-                <div class="detail-item">
-                    <span class="label">Destino</span>
-                    <span class="value">Vuelo Local VFR</span>
-                </div>
-            </div>
-
-            <div class="aircraft-info">
-                <div class="detail-item">
-                    <span class="label">Aeronave asignada</span>
-                    <span class="value">Tecnam P2010</span>
-                </div>
-                <div class="detail-item">
-                    <span class="label">Estado</span>
-                    <span class="value" style="color: #28a745;">Confirmado ✅</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="stub">
-            <div class="qr-placeholder">
-                <!-- Aquí iría un código QR real -->
-                <span style="color: #adb5bd; font-size: 40px;">📱</span>
-            </div>
-            <div class="detail-item" style="align-items: center; text-align: center;">
-                <span class="label">Escaneá para ubicación</span>
-                <span class="value" style="font-size: 14px;">Presentar al llegar</span>
-            </div>
-            <div class="barcode"></div>
-        </div>
+<div class="ticket">
+    <div class="header">
+        <div class="airline-name">✈️ TEC<span>FLIGHT</span></div>
+        <div class="status">CONFIRMADO ✅</div>
     </div>
+    
+    <div class="content">
+        <div class="grid">
+            <div class="item">
+                <span class="label">Pasajero</span>
+                <span class="value" id="passenger-name">Generando ticket...</span>
+            </div>
+            <div class="item">
+                <span class="label">Código de Reserva</span>
+                <span class="value">#S011-012</span>
+            </div>
+            <div class="item">
+                <span class="label">Fecha del Vuelo</span>
+                <span class="value">Sábado 17 de Octubre de 2026</span>
+            </div>
+            <div class="item">
+                <span class="label">Horario de Presentación</span>
+                <span class="value">17:00 Local (Llegar 16:30hs)</span>
+            </div>
+            <div class="item">
+                <span class="label">Aeronave Asignada</span>
+                <span class="value">Tecnam P2002 / LV-S011</span>
+            </div>
+            <div class="item">
+                <span class="label">Punto de Encuentro</span>
+                <span class="value">Aeropuerto Int. de San Fernando<br><small style="font-weight: normal; color: #495057;">Cafetería en el estacionamiento principal</small></span>
+            </div>
+        </div>
 
-    <!-- Script para leer parámetros de la URL si querés hacerlo dinámico -->
-    <script>
-        // Esto permite que mandes el link así: 
-        // tupagina.github.io/?nombre=Marcos&fecha=20%20Oct&hora=15:00
-        const urlParams = new URLSearchParams(window.location.search);
-        
-        if(urlParams.has('nombre')) {
-            document.getElementById('passenger-name').innerText = urlParams.get('nombre');
-        }
-        if(urlParams.has('fecha')) {
-            document.getElementById('flight-date').innerText = urlParams.get('fecha');
-        }
-        if(urlParams.has('hora')) {
-            document.getElementById('flight-time').innerText = urlParams.get('hora');
-        }
-    </script>
+        <div class="divider"></div>
+
+        <div class="info-section">
+            <div class="info-title">⚠️ Información Importante para su Vuelo</div>
+            <ol class="info-list">
+                <li><strong>Puntualidad:</strong> Le solicitamos llegar con 30 minutos de anticipación para realizar el briefing (charla técnica) previo al vuelo. En este espacio se van a explicar conceptos teóricos respecto al vuelo, aspectos de seguridad y un espacio para evacuar dudas.</li>
+                <li><strong>Meteorología:</strong> La actividad aeronáutica está estrictamente sujeta a condiciones climáticas visuales (VFR). En caso de que el clima no sea óptimo, se notificará la cancelación del vuelo seguido a una reprogramación del mismo.</li>
+                <li><strong>Vestimenta:</strong> Recomendamos el uso de ropa cómoda y anteojos de sol.</li>
+                <li><strong>Documentación:</strong> Es requisito excluyente presentarse con DNI físico tanto del pasajero como del acompañante.</li>
+            </ol>
+        </div>
+
+        <!-- Se agrega el botón de WhatsApp con el número brindado (con formato internacional +54 9) -->
+        <a href="https://wa.me/5491128540206?text=Hola!%20Tengo%20una%20consulta%20sobre%20mi%20reserva%20del%20vuelo%20de%20bautismo%20%23S011-012" class="wp-button" target="_blank">
+            <span class="wp-icon">📱</span> Contactar por WhatsApp
+        </a>
+    </div>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.has('nombre')) {
+        // Permite usar guiones o espacios en la URL (ej: nombre=Juan-Perez o nombre=Juan%20Perez)
+        document.getElementById('passenger-name').innerText = urlParams.get('nombre').replace(/-/g, ' ');
+    } else {
+        document.getElementById('passenger-name').innerText = "Pasajero VIP";
+    }
+</script>
 </body>
 </html>
