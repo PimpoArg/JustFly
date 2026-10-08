@@ -3,20 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarjeta de Embarque - Just Fly Bautismos</title>
+    <title>Just Fly Bautismos</title>
     <style>
+        /* ESTILOS GENERALES Y PALETA DE COLORES */
+        :root {
+            --primary-dark: #2b2b2b;
+            --accent-orange: #f96b0c;
+            --bg-light: #f0f2f5;
+            --text-gray: #495057;
+            --white: #ffffff;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--primary-dark);
+        }
+
+        /* BARRA DE NAVEGACIÓN */
+        nav {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 20px 40px;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .logo span {
+            color: var(--accent-orange);
+        }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* SECCIÓN HERO (INICIO) */
+        .hero {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: 8px solid var(--accent-orange);
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #adb5bd;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+        .btn-primary {
+            background-color: var(--accent-orange);
+            color: var(--white);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #d85a08;
+        }
+
+        /* SECCIÓN SERVICIOS */
+        .services-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            color: var(--primary-dark);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent-orange);
+        }
+        .service-card h3 {
+            margin-top: 0;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* SECCIÓN BUSCAR RESERVA */
+        .search-reservation {
+            background-color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        .search-container input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            text-transform: uppercase;
+        }
+        .search-container input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 30px;
+            font-size: 14px;
+        }
+
+        /* --------------------------------------------------- */
+        /* ESTILOS DEL TICKET (Oculto por defecto en la página) */
+        /* --------------------------------------------------- */
+        #ticket-view {
+            display: none; /* Se oculta hasta que se busca una reserva */
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
             padding: 20px;
+            flex-direction: column;
         }
+        
+        .back-btn {
+            margin-bottom: 20px;
+            background: none;
+            border: none;
+            color: var(--primary-dark);
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
         .ticket {
-            background-color: white;
+            background-color: var(--white);
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             display: flex;
@@ -24,18 +199,15 @@
             overflow: hidden;
             max-width: 900px;
             width: 100%;
-            border-top: 8px solid #f96b0c;
+            border-top: 8px solid var(--accent-orange);
         }
         @media (min-width: 768px) {
-            .ticket {
-                flex-direction: row;
-            }
+            .ticket { flex-direction: row; }
         }
         .main-content {
             padding: 30px;
             flex: 2;
             border-right: 2px dashed #e0e0e0;
-            position: relative;
         }
         .stub {
             padding: 30px;
@@ -45,33 +217,22 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .header {
+        .header-ticket {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #2b2b2b;
+            border-bottom: 2px solid var(--primary-dark);
             padding-bottom: 15px;
             margin-bottom: 20px;
         }
-        .airline-name {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2b2b2b;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .airline-name span {
-            color: #f96b0c;
-        }
         .flight-class {
             background-color: #28a745;
-            color: white;
+            color: var(--white);
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 14px;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
         .details-grid {
             display: grid;
@@ -88,57 +249,53 @@
             color: #6c757d;
             text-transform: uppercase;
             font-weight: bold;
-            letter-spacing: 1px;
             margin-bottom: 4px;
         }
         .value {
             font-size: 16px;
             font-weight: 600;
-            color: #2b2b2b;
+            color: var(--primary-dark);
         }
         .info-section {
             background-color: #f8f9fa;
-            border-left: 4px solid #f96b0c;
+            border-left: 4px solid var(--accent-orange);
             padding: 15px;
-            border-radius: 0 8px 8px 0;
             margin-bottom: 20px;
         }
         .info-title {
             font-size: 14px;
             font-weight: bold;
-            color: #2b2b2b;
-            margin-bottom: 10px;
             text-transform: uppercase;
+            margin-bottom: 10px;
         }
         .info-list {
             margin: 0;
             padding-left: 15px;
-            color: #495057;
             font-size: 12px;
             line-height: 1.5;
-        }
-        .info-list li {
-            margin-bottom: 6px;
+            color: var(--text-gray);
         }
         .wp-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            display: inline-block;
             background-color: #25D366;
-            color: white;
+            color: var(--white);
             text-decoration: none;
             padding: 12px 20px;
             border-radius: 30px;
             font-weight: bold;
             font-size: 14px;
-            transition: background-color 0.3s;
+            text-align: center;
             width: 100%;
             box-sizing: border-box;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
-        .wp-button:hover {
-            background-color: #1ebe57;
+        .stub-title {
+            font-weight: bold;
+            font-size: 18px;
+            border-bottom: 2px solid var(--accent-orange);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            text-align: center;
         }
         .stub-content {
             display: flex;
@@ -148,111 +305,203 @@
         .barcode {
             width: 100%;
             height: 60px;
-            background: repeating-linear-gradient(
-                90deg,
-                #2b2b2b,
-                #2b2b2b 3px,
-                transparent 3px,
-                transparent 6px,
-                #2b2b2b 6px,
-                #2b2b2b 8px,
-                transparent 8px,
-                transparent 12px,
-                #2b2b2b 12px,
-                #2b2b2b 16px,
-                transparent 16px,
-                transparent 20px
-            );
-            margin-top: auto;
-        }
-        .stub-title {
-            font-weight: bold;
-            color: #2b2b2b;
-            font-size: 18px;
-            border-bottom: 2px solid #f96b0c;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-            text-align: center;
+            background: repeating-linear-gradient(90deg, #2b2b2b, #2b2b2b 3px, transparent 3px, transparent 6px, #2b2b2b 6px, #2b2b2b 8px, transparent 8px, transparent 12px, #2b2b2b 12px, #2b2b2b 16px, transparent 16px, transparent 20px);
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="ticket">
-        <div class="main-content">
-            <div class="header">
-                <div class="airline-name">JUST FLY <span>BAUTISMOS</span></div>
-                <div class="flight-class">CONFIRMADO</div>
+    <!-- VISTA PRINCIPAL (LANDING PAGE) -->
+    <div id="landing-view">
+        <nav>
+            <div class="logo">JUST FLY <span>BAUTISMOS</span></div>
+            <div class="nav-links">
+                <a href="#servicios">Servicios</a>
+                <a href="#mi-reserva">Mi Reserva</a>
             </div>
-            
-            <div class="details-grid">
-                <div class="detail-item">
-                    <span class="label">Pasajero</span>
-                    <span class="value" id="passenger-name">Joaquin Lenne</span>
+        </nav>
+
+        <header class="hero">
+            <h1>Descubra la experiencia de volar</h1>
+            <p>Vuelos de bautismo exclusivos sobre la zona norte de Buenos Aires. Conozca la aviación desde adentro con nuestros pilotos experimentados.</p>
+            <a href="#mi-reserva" class="btn-primary">Gestionar mi reserva</a>
+        </header>
+
+        <section id="servicios" class="services-section">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Vuelo Básico (30 Min)</h3>
+                    <p>Ideal para su primera experiencia en el aire. Sobrevuelo por la zona de San Fernando, Tigre y alrededores. Incluye charla técnica previa y familiarización con la aeronave.</p>
                 </div>
-                <div class="detail-item">
-                    <span class="label">Reserva</span>
-                    <span class="value">#S011-012</span>
+                <div class="service-card">
+                    <h3>Vuelo Panorámico (45 Min)</h3>
+                    <p>Un recorrido más extenso que permite disfrutar de las mejores vistas del Delta y la costa del Río de la Plata. Tiempo extendido en el aire para fotografías.</p>
                 </div>
-                <div class="detail-item">
-                    <span class="label">Fecha</span>
-                    <span class="value" id="flight-date">Sabado 17 Oct 2026</span>
+                <div class="service-card">
+                    <h3>Experiencia Doble</h3>
+                    <p>Pensado para parejas o amigos. Dos vuelos sucesivos en la misma jornada para que ambos puedan experimentar la sensación de volar en nuestra aeronave biplaza.</p>
                 </div>
-                <div class="detail-item">
-                    <span class="label">Presentacion</span>
-                    <span class="value" id="flight-time">16:30 Local (Vuelo 17:00)</span>
+            </div>
+        </section>
+
+        <section id="mi-reserva" class="search-reservation">
+            <h2 class="section-title">Acceder a su Tarjeta de Embarque</h2>
+            <div class="search-container">
+                <p style="color: var(--text-gray); margin-bottom: 20px;">Ingrese su código de reserva (Ej: S011-012) para visualizar los detalles de su vuelo y su pase de abordar.</p>
+                <form onsubmit="buscarReserva(event)">
+                    <input type="text" id="codigo-reserva" placeholder="Ingrese su código de reserva" required>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Buscar Vuelo</button>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Just Fly Bautismos. Operando desde Aeropuerto Internacional de San Fernando.</p>
+        </footer>
+    </div>
+
+    <!-- VISTA DEL TICKET (TARJETA DE EMBARQUE) -->
+    <div id="ticket-view">
+        <button class="back-btn" onclick="volverInicio()">Volver a la página principal</button>
+        
+        <div class="ticket">
+            <div class="main-content">
+                <div class="header-ticket">
+                    <div class="logo">JUST FLY <span>BAUTISMOS</span></div>
+                    <div class="flight-class">CONFIRMADO</div>
                 </div>
-                <div class="detail-item">
-                    <span class="label">Punto de Encuentro</span>
-                    <span class="value">Aeropuerto San Fernando<br><span style="font-size: 13px; font-weight: normal;">Cafeteria Estacionamiento Principal</span></span>
+                
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <span class="label">Pasajero</span>
+                        <span class="value" id="passenger-name">Generando...</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Reserva</span>
+                        <span class="value" id="ticket-res-code">#S011-000</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Fecha</span>
+                        <span class="value" id="flight-date">A Confirmar</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Presentación</span>
+                        <span class="value" id="flight-time">Coordinar con piloto</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Punto de Encuentro</span>
+                        <span class="value">Aeropuerto San Fernando<br><span style="font-size: 13px; font-weight: normal;">Cafetería Estacionamiento Principal</span></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Aeronave</span>
+                        <span class="value">Tecnam P2002 / LV-S011</span>
+                    </div>
                 </div>
-                <div class="detail-item">
-                    <span class="label">Aeronave</span>
-                    <span class="value">Tecnam P2002 / LV-S011</span>
+
+                <div class="info-section">
+                    <div class="info-title">Información Importante</div>
+                    <ol class="info-list">
+                        <li><strong>Puntualidad:</strong> Presentarse con 30 min de anticipación para el briefing previo al vuelo.</li>
+                        <li><strong>Meteorología:</strong> Sujeto a condiciones visuales (VFR). Posible reprogramación en caso de clima adverso.</li>
+                        <li><strong>Vestimenta:</strong> Recomendamos ropa cómoda y anteojos de sol.</li>
+                        <li><strong>Documentación:</strong> Requisito excluyente presentar DNI físico (pasajero y acompañante).</li>
+                    </ol>
                 </div>
+
+                <a href="https://wa.me/5491128540206" class="wp-button" target="_blank" id="wp-link">
+                    Contactar Atención al Cliente
+                </a>
             </div>
 
-            <div class="info-section">
-                <div class="info-title">Informacion Importante</div>
-                <ol class="info-list">
-                    <li><strong>Puntualidad:</strong> Presentarse con 30 min de anticipacion para el briefing previo al vuelo.</li>
-                    <li><strong>Meteorologia:</strong> Sujeto a condiciones visuales (VFR). Posible reprogramacion en caso de clima adverso.</li>
-                    <li><strong>Vestimenta:</strong> Recomendamos ropa comoda y anteojos de sol.</li>
-                    <li><strong>Documentacion:</strong> Requisito excluyente presentar DNI fisico (pasajero y acompañante).</li>
-                </ol>
+            <div class="stub">
+                <div class="stub-content">
+                    <div class="stub-title">JUST FLY</div>
+                    <div class="detail-item">
+                        <span class="label">Pasajero</span>
+                        <span class="value" id="stub-passenger">Generando...</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Reserva</span>
+                        <span class="value" id="stub-res-code">#S011-000</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Matrícula</span>
+                        <span class="value">LV-S011</span>
+                    </div>
+                </div>
+                <div class="barcode"></div>
             </div>
-
-            <a href="https://wa.me/5491128540206?text=Hola,%20tengo%20una%20consulta%20sobre%20mi%20reserva%20%23S011-012" class="wp-button" target="_blank">
-                Contactar Atencion al Cliente
-            </a>
-        </div>
-
-        <div class="stub">
-            <div class="stub-content">
-                <div class="stub-title">JUST FLY</div>
-                <div class="detail-item">
-                    <span class="label">Pasajero</span>
-                    <span class="value" id="stub-passenger">Joaquin Lenne</span>
-                </div>
-                <div class="detail-item">
-                    <span class="label">Reserva</span>
-                    <span class="value">#S011-012</span>
-                </div>
-                <div class="detail-item">
-                    <span class="label">Matricula</span>
-                    <span class="value">LV-S011</span>
-                </div>
-            </div>
-            <div class="barcode"></div>
         </div>
     </div>
 
+    <!-- SCRIPT DE FUNCIONAMIENTO -->
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        if(urlParams.has('nombre')) {
-            const nombre = urlParams.get('nombre').replace(/-/g, ' ');
+        // Esta función se ejecuta al cargar la página
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Si el link trae los datos de forma directa (como lo armamos en el mail)
+            if(urlParams.has('nombre')) {
+                // Ocultamos la página principal y mostramos el ticket
+                document.getElementById('landing-view').style.display = 'none';
+                document.getElementById('ticket-view').style.display = 'flex';
+                
+                // Cargamos los datos
+                const nombre = urlParams.get('nombre').replace(/-/g, ' ');
+                const reserva = urlParams.has('reserva') ? '#' + urlParams.get('reserva').toUpperCase() : '#S011-PENDING';
+                const fecha = urlParams.has('fecha') ? urlParams.get('fecha') : 'Sábado 17 Oct 2026';
+                const hora = urlParams.has('hora') ? urlParams.get('hora') : '16:30 Local (Vuelo 17:00)';
+                
+                cargarDatosTicket(nombre, reserva, fecha, hora);
+            }
+        };
+
+        // Función cuando el usuario busca manualmente desde la web
+        function buscarReserva(event) {
+            event.preventDefault(); // Evita que la página recargue
+            let codigoIngresado = document.getElementById('codigo-reserva').value.trim().toUpperCase();
+            
+            if(codigoIngresado) {
+                if(!codigoIngresado.startsWith('#')) {
+                    codigoIngresado = '#' + codigoIngresado;
+                }
+                
+                // Transición: Ocultar Home, Mostrar Ticket
+                document.getElementById('landing-view').style.display = 'none';
+                document.getElementById('ticket-view').style.display = 'flex';
+                window.scrollTo(0, 0); // Sube al inicio de la página
+                
+                // Para la búsqueda manual, ponemos datos genéricos y el código ingresado. 
+                // (Para hacerlo 100% real se necesitaría una base de datos, pero así simula el sistema)
+                cargarDatosTicket("Pasajero Confirmado", codigoIngresado, "A Coordinar", "A Coordinar");
+            }
+        }
+
+        // Función para volver atrás
+        function volverInicio() {
+            document.getElementById('ticket-view').style.display = 'none';
+            document.getElementById('landing-view').style.display = 'block';
+            
+            // Limpia la URL para que no quede el ?nombre=... si deciden volver atrás
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        // Función auxiliar para llenar los textos del ticket
+        function cargarDatosTicket(nombre, reserva, fecha, hora) {
             document.getElementById('passenger-name').innerText = nombre;
             document.getElementById('stub-passenger').innerText = nombre;
+            
+            document.getElementById('ticket-res-code').innerText = reserva;
+            document.getElementById('stub-res-code').innerText = reserva;
+            
+            document.getElementById('flight-date').innerText = fecha;
+            document.getElementById('flight-time').innerText = hora;
+
+            // Actualizar link de WhatsApp con la reserva
+            const linkWp = `https://wa.me/5491128540206?text=Hola,%20tengo%20una%20consulta%20sobre%20mi%20reserva%20${reserva}`;
+            document.getElementById('wp-link').href = linkWp;
         }
     </script>
 </body>
