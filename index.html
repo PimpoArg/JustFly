@@ -79,6 +79,7 @@
         }
 
         /* ================= HERO SECTION (INICIO CON FOTO) ================= */
+        /* PARA CAMBIAR LA FOTO DE INICIO: Reemplazá el link de url('...') por tu propia imagen */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
@@ -160,7 +161,7 @@
         /* ================= BÚSQUEDA DE RESERVA ================= */
         .search-container {
             max-width: 600px;
-            margin: -80px auto 40px auto; /* Sube sobre el hero */
+            margin: -80px auto 40px auto;
             background: var(--white);
             padding: 40px;
             border-radius: 12px;
@@ -210,6 +211,7 @@
             font-size: 17px;
             margin-bottom: 20px;
         }
+        /* PARA CAMBIAR LA FOTO DE NOSOTROS: Reemplazá el link de url('...') */
         .info-image {
             width: 100%;
             height: 400px;
@@ -239,9 +241,10 @@
             background-size: cover;
             background-position: center;
         }
+        /* PARA CAMBIAR LAS FOTOS DE LOS SERVICIOS: Reemplazá los links de acá abajo */
         .service-img.basico { background-image: url('https://images.unsplash.com/photo-1520697554902-124bdfb77626?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
-        .service-img.panoramico { background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
-        .service-img.doble { background-image: url('https://images.unsplash.com/photo-1623886518774-fc2c3587b1c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
+        .service-img.piloto { background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
+        .service-img.navegacion { background-image: url('https://images.unsplash.com/photo-1623886518774-fc2c3587b1c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
         
         .service-content { padding: 30px; }
         .service-content h3 { margin-top: 0; font-size: 22px; color: var(--primary-dark); }
@@ -328,7 +331,6 @@
             text-decoration: underline;
         }
 
-        /* Estilos del Ticket de la versión anterior (minificados para espacio) */
         .ticket { background-color: var(--white); border-radius: 12px; box-shadow: var(--shadow); display: flex; flex-direction: column; overflow: hidden; max-width: 900px; width: 100%; border-top: 8px solid var(--accent-orange); }
         @media (min-width: 768px) { .ticket { flex-direction: row; } }
         .main-content { padding: 30px; flex: 2; border-right: 2px dashed #e0e0e0; }
@@ -351,7 +353,7 @@
 <body>
 
     <!-- BOTÓN FLOTANTE WHATSAPP -->
-    <a href="https://wa.me/5491128540206?text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20para%20reservar%20un%20vuelo%20de%20bautismo." class="whatsapp-float" target="_blank" title="Contactanos por WhatsApp">
+    <a href="https://wa.me/5491128540206?text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20para%20reservar%20un%20vuelo." class="whatsapp-float" target="_blank" title="Contactanos por WhatsApp">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 2a13.9 13.9 0 0 0-11.75 21.36L2.5 30l6.83-1.7a13.9 13.9 0 1 0 6.67-26.3zm0 25.54a11.66 11.66 0 0 1-6-1.65l-.43-.25-4.46 1.1 1.2-4.24-.28-.44A11.72 11.72 0 1 1 16 27.54zm6.5-8.6c-.35-.18-2.1-.1-2.42-.03-.33.06-.57.17-.8.5s-.9 1.12-1.12 1.34-.43.25-.78.07a9.35 9.35 0 0 1-2.75-1.7 10.3 10.3 0 0 1-1.9-2.37c-.22-.38.02-.57.2-.75.16-.16.35-.42.53-.63.18-.2.24-.35.35-.58.12-.23.06-.44-.03-.63-.09-.18-.8-1.93-1.1-2.65-.28-.7-.57-.6-.8-.6h-.68c-.28 0-.74.1-1.13.53a3.42 3.42 0 0 0-1.07 2.53c0 1.5 1.1 2.95 1.26 3.16.15.22 2.15 3.28 5.2 4.54 2.1.86 2.87 1.05 3.93.97 1.1-.07 2.1-.85 2.4-1.68.3-.83.3-1.53.2-1.68-.08-.13-.3-.23-.65-.4z"/></svg>
     </a>
 
@@ -369,7 +371,7 @@
 
         <header class="hero">
             <h1>El cielo ya no es el límite</h1>
-            <p>Descubra Buenos Aires desde una nueva perspectiva. Vuelos de bautismo exclusivos en el Aeropuerto Internacional de San Fernando con pilotos experimentados.</p>
+            <p>Descubra Buenos Aires desde una nueva perspectiva. Vuelos de bautismo exclusivos con pilotos experimentados.</p>
             <div class="hero-buttons">
                 <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20reservar%20un%20vuelo!" target="_blank" class="btn-primary">Quiero Reservar</a>
                 <a href="#mi-reserva" class="btn-secondary">Ver mi Estado de Vuelo</a>
@@ -380,7 +382,7 @@
         <section id="mi-reserva" style="position: relative;">
             <div class="search-container">
                 <h3>Verifique su Tarjeta de Embarque</h3>
-                <p style="color: var(--text-gray); font-size: 15px; margin-bottom: 20px;">Ingrese su código de reserva (Ej: S011-012) para acceder a los detalles del vuelo y el pase de abordar.</p>
+                <p style="color: var(--text-gray); font-size: 15px; margin-bottom: 20px;">Ingrese su código de reserva (Ej: xxxx-xxxx) para acceder a los detalles del vuelo y el pase de abordar.</p>
                 <div id="error-msg" class="error-msg"></div>
                 <form onsubmit="buscarReserva(event)">
                     <input type="text" id="codigo-reserva" placeholder="CÓDIGO DE RESERVA" required>
@@ -397,8 +399,8 @@
             </div>
             <div class="info-grid">
                 <div class="info-text">
-                    <p>En <strong>Just Fly Bautismos</strong>, nuestro objetivo es acercar la pasión por la aviación a todas las personas. Operamos desde el prestigioso Aeropuerto Internacional de San Fernando, garantizando los más altos estándares operativos.</p>
-                    <p>Nuestra aeronave principal, el <strong>Tecnam P2002 (LV-S011)</strong>, es un avión biplaza de diseño italiano, reconocido mundialmente por su visibilidad panorámica, confort y seguridad excepcional, ideal para primeros vuelos.</p>
+                    <p>En <strong>Just Fly Bautismos</strong>, nuestro objetivo es acercar la pasión por la aviación a todas las personas. Operamos desde los prestigiosos aeródromos de <strong>San Fernando y Morón</strong>, garantizando los más altos estándares operativos.</p>
+                    <p>Contamos con una flota amplia y moderna de la reconocida línea <strong>Tecnam</strong>, incluyendo modelos de primer nivel como el <strong>P2002, Astore y P92 MKII</strong>. Estas aeronaves son elegidas mundialmente por su excelente visibilidad panorámica, confort y seguridad excepcional, haciéndolas ideales para disfrutar tu primer vuelo.</p>
                     <p>Cada experiencia incluye un <i>briefing</i> técnico previo, donde el piloto explicará los principios básicos del vuelo y los sistemas del avión, convirtiendo el paseo en una experiencia también educativa.</p>
                 </div>
                 <div class="info-image"></div>
@@ -415,28 +417,28 @@
                 <div class="service-card">
                     <div class="service-img basico"></div>
                     <div class="service-content">
-                        <h3>Bautismo Clásico</h3>
-                        <span class="service-price">30 Minutos</span>
-                        <p>El vuelo introductorio perfecto. Despegue desde San Fernando, sobrevuelo por la zona norte, Tigre y alrededores del Delta. Excelente para una primera toma de contacto con el aire.</p>
-                        <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20info%20sobre%20el%20Bautismo%20Clasico" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: none;">Reservar este vuelo →</a>
+                        <h3>Vuelo de Bautismo</h3>
+                        <span class="service-price">40 Minutos</span>
+                        <p>El vuelo introductorio perfecto. Un recorrido aéreo diseñado para que disfrutes de las mejores vistas y tengas tu primera gran experiencia en el aire con total seguridad.</p>
+                        <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20info%20sobre%20el%20Vuelo%20de%20Bautismo" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: none;">Reservar este vuelo →</a>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img panoramico"></div>
+                    <div class="service-img piloto"></div>
                     <div class="service-content">
-                        <h3>Vuelo Panorámico</h3>
-                        <span class="service-price">45 Minutos</span>
-                        <p>Una ruta más extensa que nos permite adentrarnos en las vistas del Río de la Plata y recorrer el Delta en profundidad. Ideal para los amantes de la fotografía.</p>
-                        <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20info%20sobre%20el%20Vuelo%20Panoramico" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: none;">Reservar este vuelo →</a>
+                        <h3>Piloto por un día</h3>
+                        <span class="service-price">1 Hora</span>
+                        <p>Una experiencia inmersiva donde podrás tomar los mandos de la aeronave bajo la estricta y segura supervisión de un piloto instructor. Sentí lo que es pilotear un avión.</p>
+                        <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20info%20sobre%20Piloto%20por%20un%20dia" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: none;">Reservar este vuelo →</a>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img doble"></div>
+                    <div class="service-img navegacion"></div>
                     <div class="service-content">
-                        <h3>Experiencia Doble</h3>
-                        <span class="service-price">Para Parejas / Amigos</span>
-                        <p>Como el avión es para un pasajero + piloto, ofrecemos dos vuelos consecutivos en la misma jornada. Mientras uno vuela, el otro disfruta de las instalaciones del aeródromo.</p>
-                        <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20info%20sobre%20la%20Experiencia%20Doble" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: none;">Reservar este vuelo →</a>
+                        <h3>Navegación Aérea</h3>
+                        <span class="service-price">1 Hora 45 Minutos</span>
+                        <p>Un vuelo más extenso e ideal para los apasionados de la aviación. Vas a poder ir a conocer otro aeródromo, entender cómo se navega una ruta y vivir una experiencia completa.</p>
+                        <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20info%20sobre%20la%20Navegacion" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: none;">Reservar este vuelo →</a>
                     </div>
                 </div>
             </div>
@@ -451,18 +453,18 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"Fue un regalo de cumpleaños y superó todas mis expectativas. El piloto me explicó todo con mucha paciencia y la vista de Tigre desde arriba es increíble."</p>
-                    <div class="testimonial-author">- Martina S.</div>
+                    <p class="testimonial-text">"Volé por primera vez y gracias al profesionalismo del equipo logré sacarme el miedo al avión. ¡Una experiencia hermosa!"</p>
+                    <div class="testimonial-author">- Victoria D.</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"Excelente atención desde el momento de la reserva. Llegamos al aeropuerto, hicimos la charla previa y el vuelo en el Tecnam fue super estable y tranquilo. ¡Lo recomiendo 100%!"</p>
-                    <div class="testimonial-author">- Gastón L.</div>
+                    <p class="testimonial-text">"Soy un apasionado por los aviones y gracias a esto pude vivir una experiencia mucho más cercana y súper divertida. 100% recomendable."</p>
+                    <div class="testimonial-author">- Darío C.</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"Siempre tuve miedo a volar, pero la profesionalidad del equipo me transmitió muchísima seguridad. Fue una experiencia inolvidable, sin dudas volvería a hacerlo."</p>
-                    <div class="testimonial-author">- Camila F.</div>
+                    <p class="testimonial-text">"Fue un regalo por el día del padre. Me gustó tanto la experiencia y la atención que ese mismo día decidí empezar a volar. ¡Gracias por todo!"</p>
+                    <div class="testimonial-author">- Horacio D.</div>
                 </div>
             </div>
         </section>
@@ -475,7 +477,7 @@
         </section>
 
         <footer>
-            <p>&copy; 2026 Just Fly Bautismos. Operando desde Aeropuerto Internacional de San Fernando. LV-S011.</p>
+            <p>&copy; 2026 Just Fly Bautismos. Operando desde San Fernando y Morón.</p>
         </footer>
     </div>
 
@@ -497,7 +499,7 @@
                     </div>
                     <div class="detail-item">
                         <span class="label">Reserva</span>
-                        <span class="value" id="ticket-res-code">#S011-000</span>
+                        <span class="value" id="ticket-res-code">#XXXX-XXXX</span>
                     </div>
                     <div class="detail-item">
                         <span class="label">Fecha</span>
@@ -509,11 +511,11 @@
                     </div>
                     <div class="detail-item">
                         <span class="label">Punto de Encuentro</span>
-                        <span class="value">Aeropuerto San Fernando<br><span style="font-size: 13px; font-weight: normal;">Cafetería Estacionamiento Principal</span></span>
+                        <span class="value" id="flight-location">San Fernando / Morón</span>
                     </div>
                     <div class="detail-item">
                         <span class="label">Aeronave</span>
-                        <span class="value" id="flight-aircraft">Tecnam P2002 / LV-S011</span>
+                        <span class="value" id="flight-aircraft">Línea Tecnam</span>
                     </div>
                 </div>
 
@@ -541,11 +543,11 @@
                     </div>
                     <div class="detail-item">
                         <span class="label">Reserva</span>
-                        <span class="value" id="stub-res-code">#S011-000</span>
+                        <span class="value" id="stub-res-code">#XXXX-XXXX</span>
                     </div>
                     <div class="detail-item">
-                        <span class="label">Matrícula</span>
-                        <span class="value">LV-S011</span>
+                        <span class="label">Operación</span>
+                        <span class="value">Bautismo</span>
                     </div>
                 </div>
                 <div class="barcode"></div>
@@ -555,37 +557,36 @@
 
     <!-- SCRIPT DE FUNCIONAMIENTO Y BASE DE DATOS FALTANTE -->
     <script>
-        // BASE DE DATOS SIMULADA (Acá agregás las reservas reales)
         const baseDeDatosReservas = {
             "#S011-012": {
                 nombre: "Joaquin Lenne",
                 fecha: "Sábado 17 Oct 2026",
                 hora: "16:30 Local (Vuelo 17:00)",
-                aeronave: "Tecnam P2002 / LV-S011"
+                aeronave: "Tecnam P2002",
+                lugar: "Aeropuerto San Fernando"
             },
-            // Podés ir agregando más clientes copiando este bloque de arriba
-            "#S011-013": {
+            "#ABCD-1234": {
                 nombre: "Martin Gomez",
                 fecha: "Domingo 18 Oct 2026",
                 hora: "09:30 Local (Vuelo 10:00)",
-                aeronave: "Tecnam P2002 / LV-S011"
+                aeronave: "Tecnam Astore",
+                lugar: "Aeródromo Morón"
             }
         };
 
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             
-            // Lógica para links enviados por mail (?nombre=Joaquin...)
             if(urlParams.has('nombre')) {
                 document.getElementById('landing-view').style.display = 'none';
                 document.getElementById('ticket-view').style.display = 'flex';
                 
                 const nombre = urlParams.get('nombre').replace(/-/g, ' ');
-                const reserva = urlParams.has('reserva') ? '#' + urlParams.get('reserva').toUpperCase() : '#S011-012';
-                const fecha = urlParams.has('fecha') ? urlParams.get('fecha') : 'Sábado 17 Oct 2026';
-                const hora = urlParams.has('hora') ? urlParams.get('hora') : '16:30 Local (Vuelo 17:00)';
+                const reserva = urlParams.has('reserva') ? '#' + urlParams.get('reserva').toUpperCase() : '#XXXX-XXXX';
+                const fecha = urlParams.has('fecha') ? urlParams.get('fecha') : 'A Coordinar';
+                const hora = urlParams.has('hora') ? urlParams.get('hora') : 'A Coordinar';
                 
-                cargarDatosTicket(nombre, reserva, fecha, hora, "Tecnam P2002 / LV-S011");
+                cargarDatosTicket(nombre, reserva, fecha, hora, "Línea Tecnam", "San Fernando / Morón");
             }
         };
 
@@ -599,9 +600,8 @@
                     codigoIngresado = '#' + codigoIngresado;
                 }
                 
-                // VERIFICAR EN BASE DE DATOS SIMULADA
                 if(baseDeDatosReservas[codigoIngresado]) {
-                    errorDiv.style.display = 'none'; // Ocultar error si había
+                    errorDiv.style.display = 'none'; 
                     
                     const datosVuelo = baseDeDatosReservas[codigoIngresado];
                     
@@ -614,10 +614,10 @@
                         codigoIngresado, 
                         datosVuelo.fecha, 
                         datosVuelo.hora,
-                        datosVuelo.aeronave
+                        datosVuelo.aeronave,
+                        datosVuelo.lugar
                     );
                 } else {
-                    // SI NO EXISTE LA RESERVA, MOSTRAR ERROR
                     errorDiv.innerText = "Esa reserva no existe. Por favor, verifique el código e intente nuevamente.";
                     errorDiv.style.display = 'block';
                 }
@@ -628,12 +628,12 @@
             document.getElementById('ticket-view').style.display = 'none';
             document.getElementById('landing-view').style.display = 'block';
             document.getElementById('error-msg').style.display = 'none';
-            document.getElementById('codigo-reserva').value = ''; // Limpiar el input
+            document.getElementById('codigo-reserva').value = ''; 
             
             window.history.replaceState({}, document.title, window.location.pathname);
         }
 
-        function cargarDatosTicket(nombre, reserva, fecha, hora, aeronave) {
+        function cargarDatosTicket(nombre, reserva, fecha, hora, aeronave, lugar) {
             document.getElementById('passenger-name').innerText = nombre;
             document.getElementById('stub-passenger').innerText = nombre;
             
@@ -643,6 +643,7 @@
             document.getElementById('flight-date').innerText = fecha;
             document.getElementById('flight-time').innerText = hora;
             document.getElementById('flight-aircraft').innerText = aeronave;
+            document.getElementById('flight-location').innerText = lugar;
 
             const linkWp = `https://wa.me/5491128540206?text=Hola,%20tengo%20una%20consulta%20sobre%20mi%20reserva%20${reserva}`;
             document.getElementById('wp-link').href = linkWp;
