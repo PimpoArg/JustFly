@@ -478,7 +478,6 @@
     <script>
         const API_URL = "https://script.google.com/macros/s/AKfycbxKViuUaD4nJwsvcJeYgOPaaTTgUt63W5Rk5wZISwMqZOezXPdgURSQPYBZSWuB_ILX/exec";
 
-        // Animaciones de scroll (Reveal)
         function iniciarAnimacionesScroll() {
             const reveals = document.querySelectorAll('.reveal');
             const observer = new IntersectionObserver((entries) => {
@@ -495,14 +494,11 @@
             const urlParams = new URLSearchParams(window.location.search);
             
             if(urlParams.has('nombre')) {
-                // Modo Ticket Directo (desde mail o wsp)
                 mostrarVistaTicket();
-                
                 const nombre = urlParams.get('nombre').replace(/-/g, ' ');
                 const reserva = urlParams.has('reserva') ? '#' + urlParams.get('reserva').toUpperCase() : '#XXXX-XXXX';
                 const fecha = urlParams.has('fecha') ? urlParams.get('fecha') : 'A Coordinar';
                 const hora = urlParams.has('hora') ? urlParams.get('hora') : 'A Coordinar';
-                
                 cargarDatosTicket(nombre, reserva, fecha, hora, "Línea Tecnam", "San Fernando / Morón");
             } else {
                 iniciarAnimacionesScroll();
@@ -511,8 +507,7 @@
 
         function mostrarVistaTicket() {
             document.getElementById('landing-view').style.display = 'none';
-            document.getElementById('wa-float').style.display = 'none';
-            
+            if(document.getElementById('wa-float')) document.getElementById('wa-float').style.display = 'none';
             const ticketView = document.getElementById('ticket-view');
             ticketView.classList.remove('hidden');
             ticketView.style.display = 'flex';
@@ -522,46 +517,56 @@
         async function buscarReserva(event) {
             event.preventDefault(); 
             let codigoIngresado = document.getElementById('codigo-reserva').value.trim().toUpperCase();
+            
+            // NORMALIZAMOS: Eliminamos el # para que no importe si el usuario lo pone o si está en el Excel
+            let codigoLimpio = codigoIngresado.replace('#', '');
+            
             const errorDiv = document.getElementById('error-msg');
             const btnSubmit = event.target.querySelector('button[type="submit"]');
             
-            if(codigoIngresado) {
-                if(!codigoIngresado.startsWith('#')) {
-                    codigoIngresado = '#' + codigoIngresado;
-                }
-                
-                // Cambiar estado del botón a cargando
+            if(codigoLimpio) {
                 const textoOriginalBtn = btnSubmit.innerHTML;
                 btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">sync</span> Buscando...';
                 btnSubmit.disabled = true;
 
                 try {
-                    // LLAMADA AL EXCEL DE GOOGLE
-                    const respuesta = await fetch(API_URL);
+                    // Agregamos ?t= timestamp para romper la caché del navegador y forzar a leer el Excel nuevo
+                    const urlConCache = API_URL + "?t=" + new Date().getTime();
+                    const respuesta = await fetch(urlConCache);
                     const baseDeDatosReservas = await respuesta.json();
 
-                    if(baseDeDatosReservas[codigoIngresado]) {
+                    let vueloEncontrado = null;
+                    let codigoOficial = null;
+
+                    // BUSCAMOS EN LA BASE IGNORANDO EL '#'
+                    for (let key in baseDeDatosReservas) {
+                        if (key.replace('#', '').toUpperCase() === codigoLimpio) {
+                            vueloEncontrado = baseDeDatosReservas[key];
+                            codigoOficial = '#' + codigoLimpio; 
+                            break;
+                        }
+                    }
+
+                    if(vueloEncontrado) {
                         errorDiv.classList.add('hidden'); 
-                        const datos = baseDeDatosReservas[codigoIngresado];
                         mostrarVistaTicket();
                         cargarDatosTicket(
-                            datos.nombre, 
-                            codigoIngresado, 
-                            datos.fecha, 
-                            datos.hora,
-                            datos.aeronave,
-                            datos.lugar
+                            vueloEncontrado.nombre, 
+                            codigoOficial, 
+                            vueloEncontrado.fecha, 
+                            vueloEncontrado.hora,
+                            vueloEncontrado.aeronave,
+                            vueloEncontrado.lugar
                         );
                     } else {
                         errorDiv.innerText = "Esa reserva no existe. Por favor, verifique el código e intente nuevamente.";
                         errorDiv.classList.remove('hidden');
                     }
                 } catch (error) {
-                    errorDiv.innerText = "Hubo un error de conexión con la base de datos. Intente de nuevo.";
+                    errorDiv.innerText = "Hubo un error de conexión con la base de datos (Revise los permisos del App Script en Google).";
                     errorDiv.classList.remove('hidden');
                 }
 
-                // Restaurar botón
                 btnSubmit.innerHTML = textoOriginalBtn;
                 btnSubmit.disabled = false;
             }
@@ -571,13 +576,10 @@
             const ticketView = document.getElementById('ticket-view');
             ticketView.classList.add('hidden');
             ticketView.style.display = 'none';
-            
             document.getElementById('landing-view').style.display = 'block';
-            document.getElementById('wa-float').style.display = 'flex';
-            
+            if(document.getElementById('wa-float')) document.getElementById('wa-float').style.display = 'flex';
             document.getElementById('error-msg').classList.add('hidden');
             document.getElementById('codigo-reserva').value = ''; 
-            
             window.history.replaceState({}, document.title, window.location.pathname);
             window.scrollTo(0, 0); 
             setTimeout(iniciarAnimacionesScroll, 100);
@@ -586,14 +588,13 @@
         function cargarDatosTicket(nombre, reserva, fecha, hora, aeronave, lugar) {
             document.getElementById('bp-passenger-name').innerText = nombre;
             document.getElementById('bp-code-display').innerText = reserva;
-            
             document.getElementById('bp-slot').innerText = `${fecha} - ${hora}`;
             document.getElementById('bp-aircraft').innerText = aeronave;
             document.getElementById('bp-base').innerText = lugar;
 
             let codigoOrigen = "VFR";
-            if(lugar.toLowerCase().includes("san fernando")) codigoOrigen = "SADF";
-            else if(lugar.toLowerCase().includes("morón") || lugar.toLowerCase().includes("moron")) codigoOrigen = "SADM";
+            if(lugar && lugar.toLowerCase().includes("san fernando")) codigoOrigen = "SADF";
+            else if(lugar && (lugar.toLowerCase().includes("morón") || lugar.toLowerCase().includes("moron"))) codigoOrigen = "SADM";
             
             document.getElementById('bp-origin-code').innerText = codigoOrigen;
             document.getElementById('bp-dest-code').innerText = codigoOrigen; 
