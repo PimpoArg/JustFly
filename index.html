@@ -17,9 +17,7 @@
             --transition: all 0.3s ease;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -28,6 +26,18 @@
             background-color: var(--bg-light);
             color: var(--primary-dark);
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ================= ANIMACIONES DE SCROLL ================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ================= NAVEGACIÓN ================= */
@@ -46,40 +56,20 @@
             box-sizing: border-box;
             border-bottom: 2px solid var(--accent-orange);
         }
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+        .logo { font-size: 22px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
         .logo span { color: var(--accent-orange); }
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 14px;
-            text-transform: uppercase;
-            font-weight: 600;
-            transition: var(--transition);
-        }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 14px; text-transform: uppercase; font-weight: 600; transition: var(--transition); }
         .nav-links a:hover { color: var(--accent-orange); }
-        .nav-btn {
-            background-color: var(--accent-orange);
-            padding: 8px 18px;
-            border-radius: 20px;
-            color: var(--white) !important;
-        }
-        .nav-btn:hover {
-            background-color: #d85a08;
-            color: var(--white);
+        .nav-btn { background-color: var(--accent-orange); padding: 8px 18px; border-radius: 20px; color: var(--white) !important; }
+        .nav-btn:hover { background-color: #d85a08; }
+
+        @media (max-width: 900px) {
+            .nav-links a:not(.nav-btn) { display: none; } /* Esconde menú en celular excepto botón */
         }
 
-        /* ================= HERO SECTION (INICIO CON FOTO) ================= */
-        /* PARA CAMBIAR LA FOTO DE INICIO: Reemplazá el link de url('...') por tu propia imagen */
+        /* ================= HERO SECTION ================= */
+        /* PARA CAMBIAR LA FOTO DE INICIO */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
@@ -90,247 +80,109 @@
             text-align: center;
             color: var(--white);
             padding: 0 20px;
-            margin-top: 0;
         }
-        .hero h1 {
-            font-size: clamp(36px, 5vw, 60px);
-            margin: 0 0 20px 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .hero p {
-            font-size: clamp(16px, 2vw, 20px);
-            max-width: 700px;
-            margin-bottom: 40px;
-            color: #f8f9fa;
-        }
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .btn-primary, .btn-secondary {
-            padding: 15px 35px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            border-radius: 30px;
-            text-transform: uppercase;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            letter-spacing: 1px;
-        }
-        .btn-primary {
-            background-color: var(--accent-orange);
-            color: var(--white);
-        }
-        .btn-primary:hover { background-color: #d85a08; transform: translateY(-3px); }
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
+        .hero h1 { font-size: clamp(36px, 5vw, 60px); margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 2px; }
+        .hero p { font-size: clamp(16px, 2vw, 20px); max-width: 700px; margin-bottom: 40px; color: #f8f9fa; }
+        .hero-buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .btn-primary, .btn-secondary { padding: 15px 35px; text-decoration: none; font-weight: bold; font-size: 16px; border-radius: 30px; text-transform: uppercase; transition: var(--transition); border: none; cursor: pointer; letter-spacing: 1px; }
+        .btn-primary { background-color: var(--accent-orange); color: var(--white); }
+        .btn-primary:hover { background-color: #d85a08; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(249, 107, 12, 0.4); }
+        .btn-secondary { background-color: transparent; color: var(--white); border: 2px solid var(--white); }
         .btn-secondary:hover { background-color: var(--white); color: var(--primary-dark); transform: translateY(-3px); }
 
         /* ================= SECCIONES COMUNES ================= */
-        .section {
-            padding: 100px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
         .bg-gray { background-color: var(--bg-gray); max-width: 100%; }
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .section-title {
-            font-size: 36px;
-            text-transform: uppercase;
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-        }
-        .section-subtitle {
-            color: var(--accent-orange);
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-title { font-size: 36px; text-transform: uppercase; color: var(--primary-dark); margin-bottom: 15px; }
+        .section-subtitle { color: var(--accent-orange); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
 
         /* ================= BÚSQUEDA DE RESERVA ================= */
         .search-container {
-            max-width: 600px;
-            margin: -80px auto 40px auto;
-            background: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            border-top: 5px solid var(--accent-orange);
+            max-width: 600px; margin: -80px auto 40px auto; background: var(--white);
+            padding: 40px; border-radius: 12px; box-shadow: var(--shadow); position: relative; z-index: 10; text-align: center; border-top: 5px solid var(--accent-orange);
         }
         .search-container h3 { margin-top: 0; font-size: 24px; }
-        .search-container input {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 2px solid #ced4da;
-            border-radius: 6px;
-            font-size: 16px;
-            box-sizing: border-box;
-            text-transform: uppercase;
-            text-align: center;
-            transition: var(--transition);
-        }
-        .search-container input:focus {
-            outline: none;
-            border-color: var(--accent-orange);
-        }
-        .error-msg {
-            display: none;
-            color: #dc3545;
-            background-color: #f8d7da;
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            font-size: 14px;
-            font-weight: bold;
-        }
+        .search-container input { width: 100%; padding: 15px; margin-bottom: 15px; border: 2px solid #ced4da; border-radius: 6px; font-size: 16px; box-sizing: border-box; text-transform: uppercase; text-align: center; transition: var(--transition); }
+        .search-container input:focus { outline: none; border-color: var(--accent-orange); }
+        .error-msg { display: none; color: #dc3545; background-color: #f8d7da; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 14px; font-weight: bold; }
+
+        /* ================= CÓMO FUNCIONA (PASOS) ================= */
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
+        .step-card { padding: 20px; }
+        .step-number { width: 60px; height: 60px; background-color: var(--accent-orange); color: var(--white); font-size: 24px; font-weight: bold; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; }
+        .step-card h3 { font-size: 20px; margin-bottom: 15px; text-transform: uppercase; }
+        .step-card p { color: var(--text-gray); }
 
         /* ================= INFORMACIÓN (ABOUT) ================= */
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        .info-text p {
-            color: var(--text-gray);
-            font-size: 17px;
-            margin-bottom: 20px;
-        }
-        /* PARA CAMBIAR LA FOTO DE NOSOTROS: Reemplazá el link de url('...') */
-        .info-image {
-            width: 100%;
-            height: 400px;
-            background: url('https://images.unsplash.com/photo-1583024658195-257a3e790a3c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .info-text p { color: var(--text-gray); font-size: 17px; margin-bottom: 20px; }
+        /* PARA CAMBIAR LA FOTO DE NOSOTROS */
+        .info-image { width: 100%; height: 400px; background: url('https://images.unsplash.com/photo-1583024658195-257a3e790a3c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover; border-radius: 12px; box-shadow: var(--shadow); }
         @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } }
 
-        /* ================= SERVICIOS CON FOTOS ================= */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-        .service-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
+        /* ================= SERVICIOS ================= */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .service-card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
         .service-card:hover { transform: translateY(-10px); }
-        .service-img {
-            height: 200px;
-            background-color: #ccc;
-            background-size: cover;
-            background-position: center;
-        }
-        /* PARA CAMBIAR LAS FOTOS DE LOS SERVICIOS: Reemplazá los links de acá abajo */
+        .service-img { height: 200px; background-color: #ccc; background-size: cover; background-position: center; }
+        /* FOTOS DE SERVICIOS */
         .service-img.basico { background-image: url('https://images.unsplash.com/photo-1520697554902-124bdfb77626?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
         .service-img.piloto { background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
         .service-img.navegacion { background-image: url('https://images.unsplash.com/photo-1623886518774-fc2c3587b1c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
-        
         .service-content { padding: 30px; }
         .service-content h3 { margin-top: 0; font-size: 22px; color: var(--primary-dark); }
         .service-content p { color: var(--text-gray); font-size: 15px; margin-bottom: 20px; }
         .service-price { font-weight: bold; color: var(--accent-orange); font-size: 18px; margin-bottom: 15px; display: block; }
 
+        /* ================= GALERÍA ================= */
+        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        @media (min-width: 768px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); } }
+        .gallery-item { width: 100%; height: 250px; background-size: cover; background-position: center; border-radius: 8px; transition: var(--transition); cursor: pointer; }
+        .gallery-item:hover { transform: scale(1.03); box-shadow: var(--shadow); z-index: 2; }
+        
+        /* FOTOS DE LA GALERÍA */
+        .g1 { background-image: url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); } /* Cabina */
+        .g2 { background-image: url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); } /* Vista aerea 1 */
+        .g3 { background-image: url('https://images.unsplash.com/photo-1559074092-23f20e8b15d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); } /* Avion en pista */
+        .g4 { background-image: url('https://images.unsplash.com/photo-1529074963764-98f3804602e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); } /* Ala en vuelo */
+
         /* ================= TESTIMONIOS ================= */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .testimonial-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            border-bottom: 4px solid var(--accent-orange);
-        }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .testimonial-card { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: var(--shadow); text-align: center; border-bottom: 4px solid var(--accent-orange); }
         .stars { color: #ffc107; font-size: 20px; margin-bottom: 15px; }
         .testimonial-text { font-style: italic; color: var(--text-gray); margin-bottom: 20px; }
         .testimonial-author { font-weight: bold; color: var(--primary-dark); text-transform: uppercase; font-size: 14px; }
 
+        /* ================= PREGUNTAS FRECUENTES (FAQ) ================= */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--white); margin-bottom: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); overflow: hidden; }
+        .faq-question { padding: 20px; font-weight: bold; color: var(--primary-dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; margin: 0; }
+        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--text-gray); font-size: 15px; }
+        .faq-item.active .faq-answer { padding: 0 20px 20px 20px; max-height: 200px; }
+        .faq-icon { font-size: 20px; transition: transform 0.3s; color: var(--accent-orange); }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+
         /* ================= CONTACTO Y FOOTER ================= */
-        .cta-section {
-            background-color: var(--primary-dark);
-            color: var(--white);
-            text-align: center;
-            padding: 80px 20px;
-        }
+        .cta-section { background-color: var(--primary-dark); color: var(--white); text-align: center; padding: 80px 20px; }
         .cta-section h2 { font-size: 36px; margin-bottom: 20px; }
         .cta-section p { font-size: 18px; margin-bottom: 40px; color: #adb5bd; max-width: 600px; margin-inline: auto; }
         
-        footer {
-            background-color: #1a1a1a;
-            color: #adb5bd;
-            text-align: center;
-            padding: 30px;
-            font-size: 14px;
-        }
+        footer { background-color: #1a1a1a; color: #adb5bd; padding: 60px 5% 30px 5%; font-size: 14px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #333; padding-bottom: 40px; margin-bottom: 20px; }
+        .footer-col h4 { color: var(--white); text-transform: uppercase; margin-bottom: 20px; font-size: 16px; }
+        .footer-col p, .footer-col a { color: #adb5bd; text-decoration: none; margin-bottom: 10px; display: block; transition: var(--transition); }
+        .footer-col a:hover { color: var(--accent-orange); }
+        .footer-bottom { text-align: center; color: #6c757d; font-size: 13px; }
 
         /* BOTÓN FLOTANTE WHATSAPP */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: transform 0.3s;
-        }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s; }
         .whatsapp-float:hover { transform: scale(1.1); }
         .whatsapp-float svg { width: 35px; height: 35px; fill: white; }
 
         /* ================= VISTA DEL TICKET ================= */
-        #ticket-view {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 100px 20px 40px 20px;
-            flex-direction: column;
-            background-color: var(--bg-gray);
-        }
-        .back-btn {
-            margin-bottom: 20px;
-            background: none;
-            border: none;
-            color: var(--primary-dark);
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
+        #ticket-view { display: none; justify-content: center; align-items: center; min-height: 100vh; padding: 100px 20px 40px 20px; flex-direction: column; background-color: var(--bg-gray); }
+        .back-btn { margin-bottom: 20px; background: none; border: none; color: var(--primary-dark); font-weight: bold; font-size: 16px; cursor: pointer; text-decoration: underline; }
         .ticket { background-color: var(--white); border-radius: 12px; box-shadow: var(--shadow); display: flex; flex-direction: column; overflow: hidden; max-width: 900px; width: 100%; border-top: 8px solid var(--accent-orange); }
         @media (min-width: 768px) { .ticket { flex-direction: row; } }
         .main-content { padding: 30px; flex: 2; border-right: 2px dashed #e0e0e0; }
@@ -347,7 +199,6 @@
         .wp-button { display: inline-block; background-color: #25D366; color: var(--white); text-decoration: none; padding: 12px 20px; border-radius: 30px; font-weight: bold; font-size: 14px; text-align: center; width: 100%; box-sizing: border-box; text-transform: uppercase; }
         .stub-title { font-weight: bold; font-size: 18px; border-bottom: 2px solid var(--accent-orange); padding-bottom: 10px; margin-bottom: 10px; text-align: center; }
         .barcode { width: 100%; height: 60px; background: repeating-linear-gradient(90deg, #2b2b2b, #2b2b2b 3px, transparent 3px, transparent 6px, #2b2b2b 6px, #2b2b2b 8px, transparent 8px, transparent 12px, #2b2b2b 12px, #2b2b2b 16px, transparent 16px, transparent 20px); margin-top: 20px; }
-
     </style>
 </head>
 <body>
@@ -364,12 +215,13 @@
             <div class="nav-links">
                 <a href="#info">Nosotros</a>
                 <a href="#servicios">Servicios</a>
-                <a href="#opiniones">Opiniones</a>
+                <a href="#galeria">Galería</a>
+                <a href="#faq">Preguntas</a>
                 <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20reservar%20un%20vuelo!" target="_blank" class="nav-btn">Reservar</a>
             </div>
         </nav>
 
-        <header class="hero">
+        <header class="hero reveal active">
             <h1>El cielo ya no es el límite</h1>
             <p>Descubra Buenos Aires desde una nueva perspectiva. Vuelos de bautismo exclusivos con pilotos experimentados.</p>
             <div class="hero-buttons">
@@ -380,7 +232,7 @@
 
         <!-- BÚSQUEDA DE RESERVA -->
         <section id="mi-reserva" style="position: relative;">
-            <div class="search-container">
+            <div class="search-container reveal">
                 <h3>Verifique su Tarjeta de Embarque</h3>
                 <p style="color: var(--text-gray); font-size: 15px; margin-bottom: 20px;">Ingrese su código de reserva (Ej: xxxx-xxxx) para acceder a los detalles del vuelo y el pase de abordar.</p>
                 <div id="error-msg" class="error-msg"></div>
@@ -391,8 +243,33 @@
             </div>
         </section>
 
+        <!-- SECCIÓN PASOS (CÓMO FUNCIONA) -->
+        <section class="section bg-gray reveal" style="padding-top: 50px;">
+            <div class="section-header">
+                <span class="section-subtitle">Es muy simple</span>
+                <h2 class="section-title">¿Cómo Funciona?</h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Elegí tu vuelo</h3>
+                    <p>Consultá nuestros servicios, tiempos y tarifas. Escribinos por WhatsApp para coordinar la fecha y confirmar tu reserva.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Presentate al Aeródromo</h3>
+                    <p>Con tu tarjeta de embarque digital, acercate al punto de encuentro. Te daremos una charla técnica y de seguridad.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>¡A Volar!</h3>
+                    <p>Disfrutá de una experiencia única, vistas panorámicas increíbles y llevate un recuerdo inolvidable desde el aire.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- SECCIÓN INFORMACIÓN -->
-        <section id="info" class="section">
+        <section id="info" class="section reveal">
             <div class="section-header">
                 <span class="section-subtitle">Nuestra Experiencia</span>
                 <h2 class="section-title">Volar Nunca Fue Tan Seguro</h2>
@@ -408,7 +285,7 @@
         </section>
 
         <!-- SECCIÓN SERVICIOS -->
-        <section id="servicios" class="section bg-gray">
+        <section id="servicios" class="section bg-gray reveal">
             <div class="section-header">
                 <span class="section-subtitle">Lo que ofrecemos</span>
                 <h2 class="section-title">Nuestros Vuelos</h2>
@@ -444,8 +321,56 @@
             </div>
         </section>
 
+        <!-- SECCIÓN GALERÍA NUEVA -->
+        <section id="galeria" class="section reveal">
+            <div class="section-header">
+                <span class="section-subtitle">Imágenes</span>
+                <h2 class="section-title">Viví la Experiencia</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item g1"></div>
+                <div class="gallery-item g2"></div>
+                <div class="gallery-item g3"></div>
+                <div class="gallery-item g4"></div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN PREGUNTAS FRECUENTES (FAQ) -->
+        <section id="faq" class="section bg-gray reveal">
+            <div class="section-header">
+                <span class="section-subtitle">Resolvemos tus dudas</span>
+                <h2 class="section-title">Preguntas Frecuentes</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <h4 class="faq-question">¿Puedo llevar mi teléfono para sacar fotos? <span class="faq-icon">+</span></h4>
+                    <div class="faq-answer">
+                        <p>¡Sí, por supuesto! Recomendamos llevar el celular o cámara para documentar la experiencia. Les pedimos que lo mantengan bien sujetado durante las maniobras.</p>
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <h4 class="faq-question">¿Qué pasa si llueve o hay mal clima el día de mi reserva? <span class="faq-icon">+</span></h4>
+                    <div class="faq-answer">
+                        <p>Nuestra actividad se rige bajo reglas de vuelo visual (VFR). Si las condiciones meteorológicas (lluvia, nubes bajas o vientos fuertes) no son seguras, el vuelo se reprogramará para otra fecha sin ningún costo adicional.</p>
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <h4 class="faq-question">¿Hay algún límite de peso o edad? <span class="faq-icon">+</span></h4>
+                    <div class="faq-answer">
+                        <p>Por cuestiones técnicas de peso y balanceo de la aeronave, contamos con un límite de peso aproximado por pasajero (consultar según la aeronave asignada). Para volar no hay un límite máximo de edad, y los menores pueden hacerlo con la autorización de ambos padres.</p>
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <h4 class="faq-question">¿Es un buen regalo de cumpleaños? <span class="faq-icon">+</span></h4>
+                    <div class="faq-answer">
+                        <p>¡Es el mejor! Muchos de nuestros clientes compran el vuelo como regalo. Emitimos la tarjeta de embarque digital personalizada (como la que podés buscar en esta página) para que se la envíes de sorpresa al agasajado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SECCIÓN OPINIONES -->
-        <section id="opiniones" class="section">
+        <section id="opiniones" class="section reveal">
             <div class="section-header">
                 <span class="section-subtitle">Testimonios</span>
                 <h2 class="section-title">Lo que dicen nuestros pasajeros</h2>
@@ -470,18 +395,41 @@
         </section>
 
         <!-- CTA CONTACTO -->
-        <section class="cta-section">
+        <section class="cta-section reveal">
             <h2>¿Listo para despegar?</h2>
             <p>Hable con nosotros por WhatsApp para consultar disponibilidad de fechas, tarifas actualizadas o para organizar un regalo sorpresa.</p>
             <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20reservar%20un%20vuelo!" target="_blank" class="btn-primary">Contactar Ahora</a>
         </section>
 
+        <!-- FOOTER MEJORADO -->
         <footer>
-            <p>&copy; 2026 Just Fly Bautismos. Operando desde San Fernando y Morón.</p>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Just Fly Bautismos</h4>
+                    <p>Haciendo posible el sueño de volar. Operaciones seguras, flota moderna y atención personalizada.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegación</h4>
+                    <a href="#info">Nosotros</a>
+                    <a href="#servicios">Servicios</a>
+                    <a href="#galeria">Galería</a>
+                    <a href="#faq">Preguntas Frecuentes</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contacto y Bases</h4>
+                    <p>📍 Aeropuerto Int. San Fernando</p>
+                    <p>📍 Aeródromo Morón</p>
+                    <p>📱 +54 9 11 2854-0206</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Just Fly Bautismos. Todos los derechos reservados. Vuelos sujetos a condiciones meteorológicas (VFR).</p>
+            </div>
         </footer>
     </div>
 
     <!-- VISTA DEL TICKET (TARJETA DE EMBARQUE) -->
+    <!-- (El diseño del ticket permanece igual al anterior, oculto hasta que se busca) -->
     <div id="ticket-view">
         <button class="back-btn" onclick="volverInicio()">← Volver al Inicio</button>
         
@@ -555,8 +503,9 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE FUNCIONAMIENTO Y BASE DE DATOS FALTANTE -->
+    <!-- SCRIPT DE FUNCIONAMIENTO -->
     <script>
+        /* === BASE DE DATOS DE RESERVAS === */
         const baseDeDatosReservas = {
             "#S011-012": {
                 nombre: "Joaquin Lenne",
@@ -588,6 +537,9 @@
                 
                 cargarDatosTicket(nombre, reserva, fecha, hora, "Línea Tecnam", "San Fernando / Morón");
             }
+
+            /* Iniciar animación de Scroll */
+            iniciarAnimacionesScroll();
         };
 
         function buscarReserva(event) {
@@ -631,6 +583,9 @@
             document.getElementById('codigo-reserva').value = ''; 
             
             window.history.replaceState({}, document.title, window.location.pathname);
+            
+            /* Reiniciar animación al volver */
+            setTimeout(iniciarAnimacionesScroll, 100);
         }
 
         function cargarDatosTicket(nombre, reserva, fecha, hora, aeronave, lugar) {
@@ -647,6 +602,28 @@
 
             const linkWp = `https://wa.me/5491128540206?text=Hola,%20tengo%20una%20consulta%20sobre%20mi%20reserva%20${reserva}`;
             document.getElementById('wp-link').href = linkWp;
+        }
+
+        /* Funciones para FAQ */
+        function toggleFaq(element) {
+            element.classList.toggle("active");
+        }
+
+        /* Funciones para animación Fade-in al hacer scroll */
+        function iniciarAnimacionesScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            reveals.forEach(reveal => {
+                observer.observe(reveal);
+            });
         }
     </script>
 </body>
