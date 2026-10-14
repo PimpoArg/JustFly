@@ -12,7 +12,7 @@
     <style>
         @layer base {
             html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
-            body { overscroll-behavior: none; background-color: #262E35; } /* Color base fondo inspirado en el logo */
+            body { overscroll-behavior: none; background-color: #1a1f24; }
             main > :first-child { margin-top: 0 !important; }
             main > :last-child { margin-bottom: 0 !important; }
         }
@@ -30,23 +30,23 @@
             theme: { 
                 extend: { 
                     "colors": { 
-                        "surface": "#2C363F", /* Gris oscuro azulado del logo */
-                        "surface-variant": "#37434D", 
-                        "surface-container-lowest": "#1E252B", 
-                        "surface-container-low": "#262E35", 
-                        "surface-container": "#2C363F", 
-                        "surface-container-high": "#37434D", 
-                        "surface-container-highest": "#44525D", 
-                        "background": "#262E35", 
+                        "surface": "#2c3338", 
+                        "surface-variant": "#404b52", 
+                        "surface-container-lowest": "#1a1f24", 
+                        "surface-container-low": "#22282d", 
+                        "surface-container": "#2c3338", 
+                        "surface-container-high": "#363f45", 
+                        "surface-container-highest": "#404b52", 
+                        "background": "#1a1f24", 
                         "on-background": "#ffffff", 
                         "on-surface": "#ffffff", 
-                        "on-surface-variant": "#AAB5BE", /* Gris claro para textos secundarios */
-                        "primary": "#F26419", /* Naranja del logo */
-                        "primary-container": "#F26419", 
+                        "on-surface-variant": "#b0c0c9", 
+                        "primary": "#f96b0c", 
+                        "primary-container": "#f96b0c", 
                         "on-primary-container": "#ffffff", 
                         "on-primary": "#ffffff", 
                         "secondary": "#f5f5f5", 
-                        "secondary-container": "#37434D", 
+                        "secondary-container": "#333333", 
                         "on-secondary-container": "#ffffff",
                         "error": "#ef4444", 
                         "error-container": "#7f1d1d" 
@@ -64,16 +64,12 @@
 <body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col">
 
     <!-- HEADER -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_10px_rgba(0,0,0,0.3)] border-b border-surface-container-high">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.5)] border-b border-surface-container-high">
         <div class="h-20 max-w-[1360px] mx-auto px-4 md:px-margin flex items-center justify-between gap-space-md">
             <div class="flex items-center gap-space-lg flex-shrink-0">
                 <div class="flex items-center gap-space-sm cursor-pointer" onclick="volverInicio()">
-                    <!-- Tu logo oficial -->
-                    <img src="image_8fb9e1.png" alt="Logo Just Fly" class="h-12 object-contain" />
-                </div>
-                <div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container-high rounded-lg border border-surface-container-highest shadow-inner">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span class="font-label-telemetry text-[11px] uppercase text-secondary">Ops Activas: Morón [SADM] & San Fernando [SADF]</span>
+                    <!-- LOGO CONECTADO A TU ARCHIVO -->
+                    <img src="image_8fb9e1.png" alt="Logo Just Fly" class="h-10 object-contain" />
                 </div>
             </div>
             <nav class="hidden lg:flex items-center gap-space-xs flex-shrink-0">
@@ -83,7 +79,7 @@
                 <a class="px-3 py-1.5 rounded-lg font-body-sm text-body-sm text-on-surface hover:bg-surface-container-high transition-colors" href="#faq">FAQ</a>
             </nav>
             <div class="flex items-center gap-space-sm flex-shrink-0">
-                <a class="inline-flex items-center px-4 py-2 rounded-lg bg-primary-container text-on-primary-container font-label-telemetry text-[12px] md:text-label-telemetry shadow-[0_4px_14px_rgba(242,100,25,0.3)] hover:brightness-110 hover:-translate-y-0.5 transition-all" href="https://wa.me/5491128540206?text=Hola%20Just%20Fly!%20Quiero%20consultar%20por%20un%20vuelo" target="_blank">
+                <a class="inline-flex items-center px-4 py-2 rounded-lg bg-primary-container text-on-primary-container font-label-telemetry text-[12px] md:text-label-telemetry shadow-[0_0_16px_rgba(249,107,12,0.25)] hover:brightness-110 transition-all" href="https://wa.me/5491128540206?text=Hola%20Just%20Fly!%20Quiero%20consultar%20por%20un%20vuelo" target="_blank">
                     Reservar (WhatsApp)
                 </a>
             </div>
@@ -95,16 +91,17 @@
         
         <!-- HERO -->
         <section class="relative w-full overflow-hidden bg-background pb-space-xl min-h-[90vh] flex flex-col justify-center reveal active">
-            <!-- Glow effects sutiles -->
-            <div class="absolute inset-0 pointer-events-none opacity-50">
+            <!-- Glow effects -->
+            <div class="absolute inset-0 pointer-events-none opacity-40">
                 <div class="absolute -top-40 -left-32 w-[600px] h-[600px] rounded-full bg-white/5 blur-[120px]"></div>
-                <div class="absolute top-1/4 right-0 w-[500px] h-[500px] rounded-full bg-primary/15 blur-[140px]"></div>
+                <div class="absolute top-1/4 right-0 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[140px]"></div>
             </div>
             
-            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+            <!-- FONDO PLACEHOLDER -->
+            <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/2c3338/f96b0c?text=FOTO+PRINCIPAL+DE+FONDO')] bg-cover bg-center opacity-40 mix-blend-overlay"></div>
 
             <div class="max-w-[1360px] mx-auto px-4 md:px-margin z-10 text-center flex flex-col items-center">
-                <div class="inline-flex items-center gap-space-xs px-3 py-1.5 rounded-full bg-surface-container-high text-secondary mb-6 shadow-md border border-on-surface-variant/20">
+                <div class="inline-flex items-center gap-space-xs px-3 py-1.5 rounded-full bg-surface-container-high text-secondary mb-6 shadow-lg border border-on-surface-variant/20">
                     <span class="material-symbols-outlined text-[16px]">flight</span>
                     <span class="font-label-telemetry text-[11px] uppercase tracking-wider">Aviación Deportiva Argentina · VFR Certified</span>
                 </div>
@@ -119,10 +116,10 @@
                 </p>
                 
                 <div class="flex flex-wrap items-center justify-center gap-4">
-                    <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20reservar%20un%20vuelo!" target="_blank" class="px-8 py-4 rounded-lg bg-primary text-on-primary font-headline-sm text-[16px] hover:brightness-110 hover:-translate-y-1 transition-all shadow-[0_6px_20px_rgba(242,100,25,0.3)]">
+                    <a href="https://wa.me/5491128540206?text=Hola,%20quiero%20reservar%20un%20vuelo!" target="_blank" class="px-8 py-4 rounded-lg bg-primary text-on-primary font-headline-sm text-[16px] hover:brightness-110 transition-all shadow-[0_0_20px_rgba(249,107,12,0.4)]">
                         Quiero Reservar
                     </a>
-                    <a href="#buscador-reserva" class="px-8 py-4 rounded-lg bg-surface-container-high text-on-surface font-headline-sm text-[16px] hover:bg-surface-container-highest transition-all border border-surface-container-highest shadow-md">
+                    <a href="#buscador-reserva" class="px-8 py-4 rounded-lg bg-surface-container-high text-on-surface font-headline-sm text-[16px] hover:bg-surface-container-highest transition-all border border-surface-container-highest">
                         Ver mi Estado de Vuelo
                     </a>
                 </div>
@@ -132,20 +129,20 @@
         <!-- BUSCADOR -->
         <section id="buscador-reserva" class="w-full pb-space-xl bg-background relative z-20 reveal">
             <div class="max-w-[800px] mx-auto px-4 md:px-margin -mt-16">
-                <div class="p-8 rounded-2xl bg-surface-container shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-surface-container-highest border-t-4 border-t-primary">
+                <div class="p-8 rounded-2xl bg-surface-container-lowest shadow-[0_0_40px_rgba(0,0,0,0.8)] border border-surface-container-highest border-t-4 border-t-primary">
                     <div class="text-center mb-6">
                         <span class="material-symbols-outlined text-secondary text-[32px] mb-2">qr_code_scanner</span>
                         <h2 class="font-headline-lg text-2xl text-on-surface">Verifique su Tarjeta de Embarque</h2>
                         <p class="text-on-surface-variant text-sm mt-1">Ingrese su código de reserva (Ej: #S011-012) para acceder a su Boarding Pass.</p>
                     </div>
                     
-                    <div id="error-msg" class="hidden mb-4 p-4 bg-error-container/30 border border-error text-error rounded-lg text-center font-title-md text-sm">
+                    <div id="error-msg" class="hidden mb-4 p-4 bg-error-container border border-error text-on-surface rounded-lg text-center font-title-md text-sm">
                         Esa reserva no existe. Por favor, verifique el código e intente nuevamente.
                     </div>
 
                     <form onsubmit="buscarReserva(event)" class="flex flex-col md:flex-row gap-4">
-                        <input type="text" id="codigo-reserva" placeholder="CÓDIGO DE RESERVA" required class="flex-1 px-4 py-3 bg-surface-container-lowest border border-surface-container-highest rounded-lg text-on-surface font-label-telemetry text-lg uppercase focus:outline-none focus:border-primary transition-colors text-center md:text-left shadow-inner"/>
-                        <button type="submit" class="px-6 py-3 bg-primary text-on-primary font-headline-sm rounded-lg hover:brightness-110 transition-colors whitespace-nowrap flex items-center justify-center gap-2 shadow-lg">
+                        <input type="text" id="codigo-reserva" placeholder="CÓDIGO DE RESERVA" required class="flex-1 px-4 py-3 bg-surface-container-low border border-surface-container-highest rounded-lg text-on-surface font-label-telemetry text-lg uppercase focus:outline-none focus:border-primary transition-colors text-center md:text-left"/>
+                        <button type="submit" class="px-6 py-3 bg-primary text-on-primary font-headline-sm rounded-lg hover:brightness-110 transition-colors whitespace-nowrap flex items-center justify-center gap-2">
                             <span class="material-symbols-outlined text-[20px]">search</span>
                             Buscar Vuelo
                         </button>
@@ -164,8 +161,8 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Bautismo 40m -->
-                    <div class="rounded-2xl bg-surface-container-low overflow-hidden hover:-translate-y-2 transition-transform shadow-lg flex flex-col border border-surface-container-highest">
-                        <div class="h-48 bg-[url('https://images.unsplash.com/photo-1520697554902-124bdfb77626?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')] bg-cover bg-center opacity-90 hover:opacity-100 transition-opacity"></div>
+                    <div class="rounded-2xl bg-surface-container-low overflow-hidden hover:-translate-y-2 transition-transform shadow-xl flex flex-col border border-surface-container-highest">
+                        <div class="h-48 bg-[url('https://placehold.co/600x400/363f45/f96b0c?text=FOTO+VUELO+BAUTISMO')] bg-cover bg-center"></div>
                         <div class="p-6 flex flex-col flex-1">
                             <span class="font-label-telemetry text-secondary mb-2 block">40 MINUTOS</span>
                             <h3 class="font-headline-sm text-xl text-on-surface mb-3">Vuelo de Bautismo</h3>
@@ -175,9 +172,9 @@
                     </div>
 
                     <!-- Piloto 1h -->
-                    <div class="rounded-2xl bg-surface-container overflow-hidden hover:-translate-y-2 transition-transform shadow-[0_10px_30px_rgba(242,100,25,0.15)] flex flex-col relative border border-primary/40">
-                        <div class="absolute top-4 right-4 bg-primary text-on-primary text-[10px] font-label-telemetry px-2 py-1 rounded shadow-md">DESTACADO</div>
-                        <div class="h-48 bg-[url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')] bg-cover bg-center opacity-90 hover:opacity-100 transition-opacity"></div>
+                    <div class="rounded-2xl bg-surface-container overflow-hidden hover:-translate-y-2 transition-transform shadow-[0_0_30px_rgba(249,107,12,0.15)] flex flex-col relative border border-primary/40">
+                        <div class="absolute top-4 right-4 bg-primary text-on-primary text-[10px] font-label-telemetry px-2 py-1 rounded">DESTACADO</div>
+                        <div class="h-48 bg-[url('https://placehold.co/600x400/363f45/f96b0c?text=FOTO+PILOTO+POR+UN+DIA')] bg-cover bg-center"></div>
                         <div class="p-6 flex flex-col flex-1">
                             <span class="font-label-telemetry text-primary mb-2 block">1 HORA</span>
                             <h3 class="font-headline-sm text-xl text-on-surface mb-3">Piloto por un Día</h3>
@@ -187,8 +184,8 @@
                     </div>
 
                     <!-- Navegacion 1h45m -->
-                    <div class="rounded-2xl bg-surface-container-low overflow-hidden hover:-translate-y-2 transition-transform shadow-lg flex flex-col border border-surface-container-highest">
-                        <div class="h-48 bg-[url('https://images.unsplash.com/photo-1623886518774-fc2c3587b1c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')] bg-cover bg-center opacity-90 hover:opacity-100 transition-opacity"></div>
+                    <div class="rounded-2xl bg-surface-container-low overflow-hidden hover:-translate-y-2 transition-transform shadow-xl flex flex-col border border-surface-container-highest">
+                        <div class="h-48 bg-[url('https://placehold.co/600x400/363f45/f96b0c?text=FOTO+NAVEGACION')] bg-cover bg-center"></div>
                         <div class="p-6 flex flex-col flex-1">
                             <span class="font-label-telemetry text-secondary mb-2 block">1 HORA 45 MINUTOS</span>
                             <h3 class="font-headline-sm text-xl text-on-surface mb-3">Navegación Aérea</h3>
@@ -211,22 +208,22 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- P2002 -->
-                    <div class="bg-surface-container p-6 rounded-2xl border border-surface-container-highest shadow-md hover:shadow-xl transition-shadow">
-                        <div class="h-40 rounded-xl mb-4 bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuD0caP-F7cGsiN4obRkuoq3sAEoTZeYxKE5yZ0aCTYNr2vImBy5HHJ91Ub-9KmBAijPl5qpwZRUJk5VybMO3RFKtDy8y9OVXjSirHAp0pcBYdTx2IEGDAm8_COIkLQ96GnVgfCPh-GKSYGJdP-QeTdES5t1fzqGYFgC5ucaHxt0zWdOzFKsZFe6o2qBU4A_UAeH9l5rIesvGGwrVp68NIWSLLWWfPwUy4s0Hmf-Cu7JqzCCkUbHf7Bb')] bg-cover bg-center"></div>
+                    <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-highest">
+                        <div class="h-40 rounded-xl mb-4 bg-[url('https://placehold.co/600x400/363f45/f96b0c?text=FOTO+TECNAM+P2002')] bg-cover bg-center"></div>
                         <h3 class="font-headline-sm text-lg text-on-surface">Tecnam P2002</h3>
                         <span class="font-label-telemetry text-[10px] text-primary">ALA BAJA</span>
                         <p class="text-on-surface-variant text-sm mt-2 mb-4">El favorito para bautismos. Cúpula de burbuja 360° con visibilidad deslumbrante hacia el horizonte.</p>
                     </div>
                     <!-- Astore -->
-                    <div class="bg-surface-container p-6 rounded-2xl border border-surface-container-highest shadow-md hover:shadow-xl transition-shadow">
-                        <div class="h-40 rounded-xl mb-4 bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLxoN1eIvGbE5orwqnkBjioJ1zgBuuczmbrAEM4zqs3igyjwL6p2lS7Zt8Z8eMzBP09SCjbLeqDdFs7XOYyM815F-iekxWhl7OMbVS2VGYR2RdOKyTvR62AhUFbHGTsgNyZGvfuuiTffG1MiWPW998YoRNsKkb9vPDKFbDMxeIj3D7f1k-lboM6ElrQM3eXEaNJhrLQKO1iUs9Q1ovtONoZV8IUKu6IonOJ5EqL_iApYRbksdTvV2t')] bg-cover bg-center"></div>
+                    <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-highest">
+                        <div class="h-40 rounded-xl mb-4 bg-[url('https://placehold.co/600x400/363f45/f96b0c?text=FOTO+TECNAM+ASTORE')] bg-cover bg-center"></div>
                         <h3 class="font-headline-sm text-lg text-on-surface">Tecnam Astore</h3>
                         <span class="font-label-telemetry text-[10px] text-primary">ALA BAJA SPORT</span>
                         <p class="text-on-surface-variant text-sm mt-2 mb-4">Diseño italiano refinado con doble pantalla táctil (Glass Cockpit) y agilidad insuperable.</p>
                     </div>
                     <!-- P92 -->
-                    <div class="bg-surface-container p-6 rounded-2xl border border-surface-container-highest shadow-md hover:shadow-xl transition-shadow">
-                        <div class="h-40 rounded-xl mb-4 bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuBntzimSJ1WFP5RQmx_9G5RvYsuBJo6DI6ifp5Stc0ZX5C6VabN8ndxaF8h04GTSYEPkbPxB9PUDFrN0YhC4AxBs9nIiGov2Bq1f5hdjYtFC08HoXWUEtgSvw5_v-T9EzqeJxW3ZlgYatMQdrPF_otFVqqGScGK4Ayae6xIIE8hTP2pZJwaGZ43E_hOUl8MsZGc7bcOJDIr4j2hkuBVJyZmAmjFYuYW_HDxoIdB3YVkomnYk481bboR')] bg-cover bg-center"></div>
+                    <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-highest">
+                        <div class="h-40 rounded-xl mb-4 bg-[url('https://placehold.co/600x400/363f45/f96b0c?text=FOTO+TECNAM+P92')] bg-cover bg-center"></div>
                         <h3 class="font-headline-sm text-lg text-on-surface">Tecnam P92 MKII</h3>
                         <span class="font-label-telemetry text-[10px] text-primary">ALA ALTA PANORÁMICA</span>
                         <p class="text-on-surface-variant text-sm mt-2 mb-4">Excelente estabilidad. La configuración de ala alta es predilecta para la observación y fotografía aérea.</p>
@@ -244,17 +241,17 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     <div class="bg-surface-container-low p-8 rounded-2xl border border-surface-container-highest">
-                        <div class="w-12 h-12 bg-surface-container-highest text-secondary rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 shadow-inner border border-surface-container-high">1</div>
+                        <div class="w-12 h-12 bg-surface-container-highest text-secondary rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 border border-on-surface-variant/20">1</div>
                         <h3 class="font-title-lg text-on-surface mb-2">Elegí tu vuelo</h3>
                         <p class="text-sm text-on-surface-variant">Escribinos por WhatsApp para coordinar la fecha, aeródromo y confirmar tu reserva.</p>
                     </div>
                     <div class="bg-surface-container-low p-8 rounded-2xl border border-surface-container-highest">
-                        <div class="w-12 h-12 bg-surface-container-highest text-secondary rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 shadow-inner border border-surface-container-high">2</div>
+                        <div class="w-12 h-12 bg-surface-container-highest text-secondary rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 border border-on-surface-variant/20">2</div>
                         <h3 class="font-title-lg text-on-surface mb-2">Recibís tu Boarding Pass</h3>
                         <p class="text-sm text-on-surface-variant">Emitimos tu tarjeta de embarque oficial con los datos para ingresar al predio (visualizable en esta web).</p>
                     </div>
                     <div class="bg-surface-container-low p-8 rounded-2xl border border-surface-container-highest">
-                        <div class="w-12 h-12 bg-primary/20 text-primary rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 border border-primary/30 shadow-[0_0_10px_rgba(242,100,25,0.2)]">3</div>
+                        <div class="w-12 h-12 bg-primary/20 text-primary rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 border border-primary/30">3</div>
                         <h3 class="font-title-lg text-on-surface mb-2">¡A Volar!</h3>
                         <p class="text-sm text-on-surface-variant">Breve charla técnica de seguridad con el piloto, rodaje a cabecera y despegue para una vista única.</p>
                     </div>
@@ -270,10 +267,10 @@
                     <h2 class="font-headline-lg text-3xl md:text-4xl text-on-surface">Viví la Experiencia</h2>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="h-48 md:h-64 bg-[url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')] bg-cover bg-center rounded-xl hover:scale-105 transition-transform duration-300 border border-surface-container-highest shadow-md"></div>
-                    <div class="h-48 md:h-64 bg-[url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')] bg-cover bg-center rounded-xl hover:scale-105 transition-transform duration-300 border border-surface-container-highest shadow-md"></div>
-                    <div class="h-48 md:h-64 bg-[url('https://images.unsplash.com/photo-1559074092-23f20e8b15d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')] bg-cover bg-center rounded-xl hover:scale-105 transition-transform duration-300 border border-surface-container-highest shadow-md"></div>
-                    <div class="h-48 md:h-64 bg-[url('https://images.unsplash.com/photo-1529074963764-98f3804602e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')] bg-cover bg-center rounded-xl hover:scale-105 transition-transform duration-300 border border-surface-container-highest shadow-md"></div>
+                    <div class="h-48 md:h-64 bg-[url('https://placehold.co/600x400/363f45/f96b0c?text=FOTO+GALERIA+1')] bg-cover bg-center rounded-xl hover:scale-105 transition-transform duration-300 border border-surface-container-highest"></div>
+                    <div class="h-48 md:h-64 bg-[url('https://placehold.co/600x400/363f45/f96b0c?text=FOTO+GALERIA+2')] bg-cover bg-center rounded-xl hover:scale-105 transition-transform duration-300 border border-surface-container-highest"></div>
+                    <div class="h-48 md:h-64 bg-[url('https://placehold.co/600x400/363f45/f96b0c?text=FOTO+GALERIA+3')] bg-cover bg-center rounded-xl hover:scale-105 transition-transform duration-300 border border-surface-container-highest"></div>
+                    <div class="h-48 md:h-64 bg-[url('https://placehold.co/600x400/363f45/f96b0c?text=FOTO+GALERIA+4')] bg-cover bg-center rounded-xl hover:scale-105 transition-transform duration-300 border border-surface-container-highest"></div>
                 </div>
             </div>
         </section>
@@ -286,17 +283,17 @@
                     <h2 class="font-headline-lg text-3xl md:text-4xl text-on-surface">Nuestros Pasajeros</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="p-6 bg-surface-container rounded-2xl border border-surface-container-highest shadow-lg">
+                    <div class="p-6 bg-surface-container-low rounded-2xl border border-surface-container-highest">
                         <div class="text-primary mb-3 text-xl">★★★★★</div>
                         <p class="text-sm text-on-surface-variant italic mb-4">"Volé por primera vez y gracias al profesionalismo del equipo logré sacarme el miedo al avión. ¡Una experiencia hermosa!"</p>
                         <p class="font-label-telemetry text-on-surface">— Victoria D.</p>
                     </div>
-                    <div class="p-6 bg-surface-container rounded-2xl border border-surface-container-highest shadow-lg">
+                    <div class="p-6 bg-surface-container-low rounded-2xl border border-surface-container-highest">
                         <div class="text-primary mb-3 text-xl">★★★★★</div>
                         <p class="text-sm text-on-surface-variant italic mb-4">"Soy un apasionado por los aviones y gracias a esto pude vivir una experiencia mucho más cercana y súper divertida. 100% recomendable."</p>
                         <p class="font-label-telemetry text-on-surface">— Darío C.</p>
                     </div>
-                    <div class="p-6 bg-surface-container rounded-2xl border border-surface-container-highest shadow-lg">
+                    <div class="p-6 bg-surface-container-low rounded-2xl border border-surface-container-highest">
                         <div class="text-primary mb-3 text-xl">★★★★★</div>
                         <p class="text-sm text-on-surface-variant italic mb-4">"Fue un regalo por el día del padre. Me gustó tanto la experiencia y la atención que ese mismo día decidí empezar a volar. ¡Gracias por todo!"</p>
                         <p class="font-label-telemetry text-on-surface">— Horacio D.</p>
@@ -312,20 +309,20 @@
                     <h2 class="font-headline-lg text-3xl text-on-surface">Preguntas Frecuentes</h2>
                 </div>
                 <div class="space-y-4">
-                    <div class="bg-surface-container-low border border-surface-container-highest rounded-xl overflow-hidden shadow-sm">
-                        <button class="w-full px-6 py-4 flex justify-between items-center text-left font-title-lg text-on-surface focus:outline-none hover:bg-surface-container transition-colors" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                    <div class="bg-surface-container-low border border-surface-container-highest rounded-xl overflow-hidden">
+                        <button class="w-full px-6 py-4 flex justify-between items-center text-left font-title-lg text-on-surface focus:outline-none" onclick="this.nextElementSibling.classList.toggle('hidden')">
                             ¿Puedo llevar mi teléfono para sacar fotos? <span class="text-primary text-xl">+</span>
                         </button>
                         <div class="px-6 pb-4 hidden text-on-surface-variant text-sm">¡Sí, por supuesto! Recomendamos llevar celular o cámara para documentar.</div>
                     </div>
-                    <div class="bg-surface-container-low border border-surface-container-highest rounded-xl overflow-hidden shadow-sm">
-                        <button class="w-full px-6 py-4 flex justify-between items-center text-left font-title-lg text-on-surface focus:outline-none hover:bg-surface-container transition-colors" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                    <div class="bg-surface-container-low border border-surface-container-highest rounded-xl overflow-hidden">
+                        <button class="w-full px-6 py-4 flex justify-between items-center text-left font-title-lg text-on-surface focus:outline-none" onclick="this.nextElementSibling.classList.toggle('hidden')">
                             ¿Qué pasa si llueve o hay mal clima? <span class="text-primary text-xl">+</span>
                         </button>
                         <div class="px-6 pb-4 hidden text-on-surface-variant text-sm">Operamos bajo reglas VFR. Si las condiciones no son seguras, se reprograma sin cargo.</div>
                     </div>
-                    <div class="bg-surface-container-low border border-surface-container-highest rounded-xl overflow-hidden shadow-sm">
-                        <button class="w-full px-6 py-4 flex justify-between items-center text-left font-title-lg text-on-surface focus:outline-none hover:bg-surface-container transition-colors" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                    <div class="bg-surface-container-low border border-surface-container-highest rounded-xl overflow-hidden">
+                        <button class="w-full px-6 py-4 flex justify-between items-center text-left font-title-lg text-on-surface focus:outline-none" onclick="this.nextElementSibling.classList.toggle('hidden')">
                             ¿Hay límite de peso o edad? <span class="text-primary text-xl">+</span>
                         </button>
                         <div class="px-6 pb-4 hidden text-on-surface-variant text-sm">Menores pueden volar con autorización. El límite de peso suele ser 100-105kg por pasajero, consultanos ante la duda.</div>
@@ -367,15 +364,13 @@
     <!-- VISTA DEL BOARDING PASS (Oculta por defecto) -->
     <div id="ticket-view" class="hidden flex-1 w-full flex flex-col items-center justify-center py-24 px-4 bg-background min-h-screen relative z-[60]">
         
-        <button onclick="volverInicio()" class="mb-8 flex items-center gap-2 px-4 py-2 bg-surface-container border border-surface-container-highest rounded-full text-on-surface hover:bg-surface-container-high transition-colors font-title-md shadow-md">
+        <button onclick="volverInicio()" class="mb-8 flex items-center gap-2 px-4 py-2 bg-surface-container-low border border-surface-container-highest rounded-full text-on-surface hover:bg-surface-container transition-colors font-title-md">
             <span class="material-symbols-outlined text-[18px]">arrow_back</span> Volver a la página principal
         </button>
 
-        <!-- AERO STRATUM BOARDING PASS COMPONENT -->
-        <div class="relative w-full max-w-4xl mx-auto rounded-2xl bg-surface-container overflow-hidden shadow-[0_15px_50px_rgba(0,0,0,0.6)] border border-surface-container-highest" id="boarding-pass-card">
+        <div class="relative w-full max-w-4xl mx-auto rounded-2xl bg-surface-container-low overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.8)] border border-surface-container-highest" id="boarding-pass-card">
             
-            <!-- Top Telemetry Ribbon -->
-            <div class="px-6 py-3 bg-surface-container-low flex flex-wrap items-center justify-between text-secondary font-label-telemetry border-b border-surface-container-highest">
+            <div class="px-6 py-3 bg-surface-container flex flex-wrap items-center justify-between text-secondary font-label-telemetry border-b border-surface-container-highest">
                 <div class="flex items-center gap-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span class="text-emerald-400 uppercase">DESPACHO CONFIRMADO · VFR READY</span>
@@ -387,7 +382,6 @@
             
             <div class="grid grid-cols-1 md:grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-dashed divide-surface-container-highest">
                 
-                <!-- Left Main Ticket Segment -->
                 <div class="md:col-span-8 p-6 lg:p-8 space-y-6">
                     <div class="flex items-center justify-between">
                         <div>
@@ -400,8 +394,7 @@
                         </div>
                     </div>
                     
-                    <!-- Route Indicator -->
-                    <div class="p-5 rounded-xl bg-surface-container-low flex items-center justify-between border border-surface-container-highest shadow-inner">
+                    <div class="p-5 rounded-xl bg-surface-container flex items-center justify-between border border-surface-container-highest">
                         <div class="flex flex-col">
                             <span class="font-label-code text-on-surface-variant">ORIGEN</span>
                             <span class="font-headline-md text-2xl text-secondary" id="bp-origin-code">SADM</span>
@@ -420,19 +413,17 @@
                         </div>
                     </div>
                     
-                    <!-- Details -->
                     <div class="grid grid-cols-2 gap-4 pt-2">
-                        <div class="p-3 rounded-lg bg-surface-container-low border border-surface-container-highest">
+                        <div class="p-3 rounded-lg bg-surface-container border border-surface-container-highest">
                             <span class="font-label-code text-on-surface-variant block mb-1">AERONAVE</span>
                             <span class="font-title-md text-on-surface" id="bp-aircraft">Tecnam P2002</span>
                         </div>
-                        <div class="p-3 rounded-lg bg-surface-container-low border border-surface-container-highest">
+                        <div class="p-3 rounded-lg bg-surface-container border border-surface-container-highest">
                             <span class="font-label-code text-on-surface-variant block mb-1">FECHA Y HORA</span>
                             <span class="font-title-md text-primary" id="bp-slot">A Confirmar</span>
                         </div>
                     </div>
 
-                    <!-- Info importante -->
                     <div class="mt-4 p-4 rounded-lg bg-surface-container-highest border-l-2 border-primary text-xs text-on-surface-variant space-y-2">
                         <p><strong class="text-on-surface">1. Puntualidad:</strong> Presentarse con 30 min de anticipación para el briefing.</p>
                         <p><strong class="text-on-surface">2. Clima:</strong> Sujeto a condiciones VFR. Reprogramable en caso adverso.</p>
@@ -440,14 +431,12 @@
                     </div>
                 </div>
                 
-                <!-- Right Stub -->
-                <div class="md:col-span-4 p-6 lg:p-8 flex flex-col justify-between items-center text-center space-y-6 bg-surface-container-low">
+                <div class="md:col-span-4 p-6 lg:p-8 flex flex-col justify-between items-center text-center space-y-6 bg-surface-container">
                     <div class="w-full flex items-center justify-between mb-4">
                         <span class="font-label-code text-on-surface-variant">JUST FLY</span>
                         <span class="font-label-telemetry text-primary">VIP PASS</span>
                     </div>
                     
-                    <!-- QR Mockup -->
                     <div class="p-3 bg-white rounded-xl shadow-lg flex flex-col items-center justify-center">
                         <svg class="w-32 h-32 text-black" fill="currentColor" viewbox="0 0 100 100">
                             <rect height="28" rx="2" width="28" x="5" y="5"></rect><rect fill="white" height="20" width="20" x="9" y="9"></rect><rect height="12" width="12" x="13" y="13"></rect>
@@ -460,7 +449,7 @@
                         <span class="font-label-code text-[10px] text-black tracking-widest mt-2">SCAN EN HANGAR</span>
                     </div>
 
-                    <a href="#" id="wp-link" target="_blank" class="w-full py-3 px-3 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-label-telemetry flex items-center justify-center gap-2 border border-primary/30">
+                    <a href="#" id="wp-link" target="_blank" class="w-full py-3 px-3 rounded-lg bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-colors font-label-telemetry flex items-center justify-center gap-2 border border-emerald-500/30">
                         <span class="material-symbols-outlined text-[18px]">chat</span> Contactar / Dudas
                     </a>
                 </div>
@@ -469,7 +458,7 @@
     </div>
 
     <!-- BOTÓN FLOTANTE WHATSAPP (Solo en Landing) -->
-    <a href="https://wa.me/5491128540206?text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20para%20reservar%20un%20vuelo." id="wa-float" class="fixed w-14 h-14 bottom-6 right-6 bg-[#25d366] text-white rounded-full flex items-center justify-center shadow-[0_4px_15px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform z-50" target="_blank">
+    <a href="https://wa.me/5491128540206?text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20para%20reservar%20un%20vuelo." id="wa-float" class="fixed w-14 h-14 bottom-6 right-6 bg-[#25d366] text-white rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(37,211,102,0.3)] hover:scale-110 transition-transform z-50" target="_blank">
         <svg viewBox="0 0 32 32" class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M16 2a13.9 13.9 0 0 0-11.75 21.36L2.5 30l6.83-1.7a13.9 13.9 0 1 0 6.67-26.3zm0 25.54a11.66 11.66 0 0 1-6-1.65l-.43-.25-4.46 1.1 1.2-4.24-.28-.44A11.72 11.72 0 1 1 16 27.54zm6.5-8.6c-.35-.18-2.1-.1-2.42-.03-.33.06-.57.17-.8.5s-.9 1.12-1.12 1.34-.43.25-.78.07a9.35 9.35 0 0 1-2.75-1.7 10.3 10.3 0 0 1-1.9-2.37c-.22-.38.02-.57.2-.75.16-.16.35-.42.53-.63.18-.2.24-.35.35-.58.12-.23.06-.44-.03-.63-.09-.18-.8-1.93-1.1-2.65-.28-.7-.57-.6-.8-.6h-.68c-.28 0-.74.1-1.13.53a3.42 3.42 0 0 0-1.07 2.53c0 1.5 1.1 2.95 1.26 3.16.15.22 2.15 3.28 5.2 4.54 2.1.86 2.87 1.05 3.93.97 1.1-.07 2.1-.85 2.4-1.68.3-.83.3-1.53.2-1.68-.08-.13-.3-.23-.65-.4z"/></svg>
     </a>
 
@@ -516,6 +505,7 @@
         async function buscarReserva(event) {
             event.preventDefault(); 
             let codigoIngresado = document.getElementById('codigo-reserva').value.trim().toUpperCase();
+            
             let codigoLimpio = codigoIngresado.replace('#', '');
             
             const errorDiv = document.getElementById('error-msg');
